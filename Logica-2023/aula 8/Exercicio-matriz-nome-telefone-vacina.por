@@ -1,5 +1,5 @@
 programa
-{/* Escreva programa entrada de dados matriz[4][3] tipo cadeia com as opções:
+{/* Escreva programa entrada de dados matriz[4][3] tipo cadeia com as opções:
 * 0 - Fim do programa
 * 1 - Entrada dados (nome, telefone, vacinacao) - ler dados e atribuir "não" na vacinação
 * 2 - Vacinação - busca nome da pessoa na matriz, se existe vacina e exibe "vacinação efeutada) alterando
@@ -7,7 +7,7 @@ programa
 * 3 - Imprimir matriz 
 * Fazer as opções em funções
 */
-	funcao inicio(){
+	funcao inicio(){
 
 		cadeia matriz[4][3]
 		inteiro opc
@@ -85,7 +85,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 419; 
+ * @POSICAO-CURSOR = 11; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
