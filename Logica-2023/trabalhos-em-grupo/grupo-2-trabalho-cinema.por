@@ -6,15 +6,14 @@ programa
      * Luiz Otávio Cidade
      * Rodrigo Bastos
      */
-    
- funcao inicio(){
+    funcao inicio(){
     		inteiro linha=0, coluna=0, cinema[10][12]    	    		
         	
 	faca{		
 		imprima(cinema)
 		escreva("\nDigite a linha (1 a 10) e coluna (1 a 12):\n")
 		leia(linha, coluna)
-		reserva(linha, coluna, cinema)
+		reserva(linha, coluna, cinema)    
     	   }enquanto(linha >= 0 e coluna >= 0)
     }
 
@@ -45,7 +44,7 @@ programa
                espere()
           }
           senao se(assent[linha-1][coluna-1] == 1){
-          	escreva("Assento já está ocupado!\n")
+          	escreva("Assento já está reservado!\n")
           	espere()
           } 
 	}
@@ -62,7 +61,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 510; 
+ * @POSICAO-CURSOR = 332; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
