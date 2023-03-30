@@ -6,7 +6,7 @@ Lógica de programação
 - Estrutura de dados
 - Versionamento de código (Git & Github)
 
-Banco de dados (Postgrees): 
+Banco de dados (Dbeaver, SQLite): 
 - Linguagem Unificada de Modelagem (UML)
 - Banco de dados Relacional (SQL)
 
