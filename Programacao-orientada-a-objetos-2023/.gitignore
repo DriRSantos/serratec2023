@@ -1,13 +1,17 @@
-.settings/
+.metadata
 bin/
 tmp/
-.metadata
-.classpath
-.project
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
+.settings/
 .loadpath
-.factorypath
+.recommenders
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
