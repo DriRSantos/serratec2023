@@ -1,12 +1,12 @@
-package principal;
+package application;
 
-import contas.Conta;
-import contas.ContaCorrente;
-import contas.ContaCorrenteEspecial;
-import contas.ContaPoupanca;
-import contas.ContaPoupancaEspecial;
+import entities.Conta;
+import entities.ContaCorrente;
+import entities.ContaCorrenteEspecial;
+import entities.ContaPoupanca;
+import entities.ContaPoupancaEspecial;
 
-public class Principal {
+public class Program {
 
     public static void main(String[] args) {
         System.out.println("Sistema Bancário");

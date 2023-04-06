@@ -1,6 +1,6 @@
 package pessoas;
 
-public class Gerente extends Funcionario {
+public class Gerente extends Assistente {
 
 		private int senha;
 		private int numeroFuncionarios;
@@ -38,4 +38,10 @@ public class Gerente extends Funcionario {
 				return false;
 			}
 		}
+	
+		@Override
+		public double getBonificacao() {
+			System.out.println("Bonificacao Gerente");
+			return super.getBonificacao() + (this.getSalario() * 0.15);
+		}	
 }

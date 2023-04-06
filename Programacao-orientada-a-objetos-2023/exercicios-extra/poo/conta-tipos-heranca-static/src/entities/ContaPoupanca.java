@@ -1,10 +1,19 @@
-package contas;
+package entities;
 
 public class ContaPoupanca extends Conta {
 
 	private double rendimento;
 	
+	public ContaPoupanca() {
+		
+	}
 	
+	
+
+	public ContaPoupanca(int numero, int agencia, String titular, double saldo, String tipo, double rendimento) {
+		super(numero, agencia, titular, saldo, tipo);
+		this.rendimento = rendimento;
+	}
 
 	public double getRendimento() {
 		return rendimento;

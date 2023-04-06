@@ -1,6 +1,7 @@
-package contas;
+package entities;
 
 public class Conta {
+
 
     private int numero;
     private int agencia;
