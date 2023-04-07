@@ -6,7 +6,17 @@ public class Funcionario {
 	private String cpf;
 	private double salario;
 	private String matricula; 
+	
+	public Funcionario() {
 		
+	}
+	
+	public Funcionario(String nome, String cpf, double salario, String matricula) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.salario = salario;
+		this.matricula = matricula;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -31,6 +41,8 @@ public class Funcionario {
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
+	
+	
 	
 	@Override
 	public String toString() {

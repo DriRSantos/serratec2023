@@ -1,7 +1,10 @@
-package entities;
+package contas;
 
-public class Conta {
-	
+import operacoes.Extrato;
+import operacoes.Operacoes;
+
+public abstract class Conta implements Operacoes, Extrato {
+
     private int numero;
     private int agencia;
     private String titular;
@@ -90,10 +93,13 @@ public class Conta {
         }   
     }
     
-    public void depositar(double valor) {
+    public final void depositar(double valor) {
         this.saldo += valor;
     }
     
+    public abstract void imprimeExtrato();
+    
+    @Override
     public String toString() {
         return "Conta [numero=" + numero 
         		+ ", agencia=" + agencia 

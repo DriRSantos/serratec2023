@@ -56,11 +56,21 @@ public class Program {
         
         System.out.println("\n" + cce);
         
-        Conta cont = new ContaCorrente();
+        Conta cont = new ContaCorrente(); 
         cont.setAgencia(15);
         cont.setTitular("Edu");
         System.out.println("\n" + cont);
         
         System.out.println("\nTotal de contas cadastradas: " + Conta.getTotalDeContas());
+        
+        ContaPoupanca cp2 = new ContaPoupanca(Conta.getTotalDeContas(), 51, "Jose", 5.0, "Poupanca", 2.5);
+        System.out.println("\nNova CP2 " + cp2);
+        
+        cp2.depositar(980.0);
+        System.out.println("\nCP2 " + cp2);
+        cp2.transferir(cce, 200.0);
+        System.out.println("CP2 transferiu 200 para CCE ");
+        System.out.println("\nSaldo CP2 após transferir " + cp2.getSaldo());
+        System.out.println("Saldo CCE após transferência " + cce.getSaldo());        
     }
 }

@@ -11,6 +11,10 @@ public class ContaPoupancaEspecial extends ContaPoupanca{
 	public void setCartaoDebito(double cartaoDebito) {
 		this.cartaoDebito = cartaoDebito;
 	}
+	
+	public void depositar(double valor) {
+		System.out.println("Depositei na conta poupança especial");
+	}
 
 	@Override
 	public String toString() {

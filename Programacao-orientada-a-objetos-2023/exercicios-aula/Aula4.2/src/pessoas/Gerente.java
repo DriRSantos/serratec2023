@@ -7,10 +7,13 @@ public class Gerente extends Funcionario {
 		
 		public Gerente() {
 			
-		}
+		}	
 		
+		public Gerente(String nome, String cpf, double salario, String matricula) {
+			super(nome, cpf, salario, matricula);
+		}
+
 		public Gerente(int senha, int numeroFuncionarios) {
-			
 			this.senha = senha;
 			this.numeroFuncionarios = numeroFuncionarios;
 		}
@@ -38,4 +41,11 @@ public class Gerente extends Funcionario {
 				return false;
 			}
 		}
+
+		@Override
+		public String toString() {
+			return "Gerente [senha=" + senha + ", numeroFuncionarios=" + numeroFuncionarios + ", Nome=" + getNome()
+					+ ", Cpf=" + getCpf() + ", Salario=" + getSalario() + ", Matricula=" + getMatricula()
+					+ "]";
+		}	
 }

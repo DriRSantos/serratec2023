@@ -13,6 +13,11 @@ public class ContaPoupanca extends Conta {
 	public void setRendimento(double rendimento) {
 		this.rendimento = rendimento;
 	}
+	
+	public void depositar(double valor) {
+		System.out.println("Depositei na conta poupança");
+	}
+	
 
 	@Override
 	public String toString() {

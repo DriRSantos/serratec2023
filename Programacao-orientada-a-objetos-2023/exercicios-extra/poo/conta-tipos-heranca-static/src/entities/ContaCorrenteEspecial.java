@@ -4,7 +4,7 @@ public class ContaCorrenteEspecial extends ContaCorrente {
 
 	private double cartaoCredito;
 	private double investimento;
-	
+	 
 	public ContaCorrenteEspecial() {
 	
 	}
@@ -38,9 +38,9 @@ public class ContaCorrenteEspecial extends ContaCorrente {
 				+ ", Agencia = " + getAgencia()		
 				+ ", Numero = " + getNumero()
 				+ ", cartaoCredito = " + cartaoCredito 
-				+ ", investimento = " + investimento
+				+ ", investimento = " + investimento + "\n"
 				+ ", Tarifa = " + getTarifa()
-				+ ", Saldo = " + getSaldo() + "\n"
+				+ ", Saldo = " + getSaldo()
 				+ ", Limite = " + getLimite() 
 				+ ", Tipo = " + getTipo() + "]";
 	}	
