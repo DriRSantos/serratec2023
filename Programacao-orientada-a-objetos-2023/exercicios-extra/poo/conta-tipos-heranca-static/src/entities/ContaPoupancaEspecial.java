@@ -24,7 +24,7 @@ public class ContaPoupancaEspecial extends ContaPoupanca{
 
 	@Override
 	public String toString() {
-		return "CPoupancaEspecial [Titular = " + getTitular()
+		return "CP ESPECIAL [Titular = " + getTitular()
 				+ ", Agencia = " + getAgencia()
 				+ ", Numero = " + getNumero()
 				+ ", Saldo = " + getSaldo()

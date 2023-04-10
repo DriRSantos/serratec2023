@@ -23,7 +23,7 @@ public class ContaPoupanca extends Conta {
 
 	@Override
 	public String toString() {
-		return "ContaPoupanca [titular = " + getTitular() 
+		return "CPOUPANÇA [titular = " + getTitular() 
 				+ ", agencia =" + getAgencia()		
 				+ ", numero = " + getNumero()
 				+ ", rendimento = " + rendimento 

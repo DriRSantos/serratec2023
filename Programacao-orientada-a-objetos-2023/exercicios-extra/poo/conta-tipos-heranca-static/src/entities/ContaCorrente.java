@@ -40,7 +40,7 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public String toString() {
-		return "CCorrente [titular = " + getTitular() 
+		return "CCORRENTE [titular = " + getTitular() 
 				+ ", agencia = " + getAgencia()
 				+ ", numero = " + getNumero()
 				+ ", tarifa = " + tarifa 

@@ -34,7 +34,7 @@ public class ContaCorrenteEspecial extends ContaCorrente {
 
 	@Override
 	public String toString() {
-		return "CCorrenteEspecial [Titular = " + getTitular()
+		return "CC ESPECIAL [Titular = " + getTitular()
 				+ ", Agencia = " + getAgencia()		
 				+ ", Numero = " + getNumero()
 				+ ", cartaoCredito = " + cartaoCredito 

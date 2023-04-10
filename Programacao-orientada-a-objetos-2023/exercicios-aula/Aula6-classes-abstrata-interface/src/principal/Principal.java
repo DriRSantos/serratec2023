@@ -12,11 +12,11 @@ public class Principal {
         System.out.println("Sistema Bancário");
         System.out.println();
         
-        ContaCorrente conta = new ContaCorrente();
-        conta.depositar(1000);
-        conta.setTitular("Marcelo");
+        ContaCorrente ccorrente = new ContaCorrente();
+        ccorrente.depositar(1000);
+        ccorrente.setTitular("Marcelo");
         
-        conta.imprimeExtrato();
+        ccorrente.imprimeExtrato();
         
         System.out.println();
         ContaPoupanca cp = new ContaPoupanca();
@@ -32,6 +32,6 @@ public class Principal {
         System.out.println();
         
         ContaCorrenteEspecial cce = new ContaCorrenteEspecial(12, "Marcelo", 6500.00, "CC Especial", 150.00, 2500.00, 12000.0, 76000.00);
-        cce.imprimeExtrato();
+        cce.imprimeExtrato();        
     }
 }

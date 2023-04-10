@@ -6,6 +6,8 @@ public class Diretor extends Gerente {
 	private double salarioFunc;
 	private double rendimento;
 	
+	
+	
 	public double getDespesas() {
 		return despesas;
 	}

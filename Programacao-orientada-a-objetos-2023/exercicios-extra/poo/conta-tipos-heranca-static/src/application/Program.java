@@ -20,8 +20,6 @@ public class Program {
         
         System.out.println(cp);
         
-        System.out.println();
-        
         ContaCorrente cc = new ContaCorrente();
         cc.setAgencia(5);
         cc.setTitular("Fernanda");
@@ -31,8 +29,6 @@ public class Program {
         cc.setTarifa(85.5);
         
         System.out.println(cc);
-        
-        System.out.println();
         
         ContaPoupancaEspecial cpe = new ContaPoupancaEspecial();
         cpe.setAgencia(8);
@@ -54,7 +50,7 @@ public class Program {
         cce.setCartaoCredito(3000.0);
         cce.setInvestimento(1000.0);
         
-        System.out.println("\n" + cce);
+        System.out.println(cce);
         
         Conta cont = new ContaCorrente(); 
         cont.setAgencia(15);
