@@ -2,28 +2,44 @@ package contas;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class ContaCorrenteEspecial extends ContaCorrente {
 
+	private int idCCorrenteEsp;
 	private double cartaoCredito;
 	private double investimento;
 	
+	public static Map<Integer, ContaCorrente> mapaCCorrenteEspecial = new HashMap<>();
+	
 	public ContaCorrenteEspecial() {
 		super();
+	}	
+
+	public ContaCorrenteEspecial(int idConta, int numero, int agencia, String titular, String tipo, int idCCorrente,
+			double tarifa, double limite, int idCCorrenteEsp, double cartaoCredito, double investimento) {
+		super(idConta, numero, agencia, titular, tipo, idCCorrente, tarifa, limite);
+		this.idCCorrenteEsp = idCCorrenteEsp;
+		this.cartaoCredito = cartaoCredito;
+		this.investimento = investimento;
 	}
 
-	public ContaCorrenteEspecial(int numero, int agencia, String titular, String tipo, double tarifa, double limite,
+	public ContaCorrenteEspecial(int idConta, int numero, int agencia, String titular, String tipo,
+			double depositoInicial, int idCCorrente, double tarifa, double limite, int idCCorrenteEsp,
 			double cartaoCredito, double investimento) {
-		super(numero, agencia, titular, tipo, tarifa, limite);
+		super(idConta, numero, agencia, titular, tipo, depositoInicial, idCCorrente, tarifa, limite);
+		this.idCCorrenteEsp = idCCorrenteEsp;
 		this.cartaoCredito = cartaoCredito;
 		this.investimento = investimento;
 	}
 
-	public ContaCorrenteEspecial(int numero, int agencia, String titular, String tipo, double depositoInicial, double tarifa,
-			double limite, double cartaoCredito, double investimento) {
-		super(numero, agencia, titular, tipo, depositoInicial, tarifa, limite);
-		this.cartaoCredito = cartaoCredito;
-		this.investimento = investimento;
+	public int getIdCCorrenteEsp() {
+		return idCCorrenteEsp;
+	}
+
+	public void setIdCCorrenteEsp(int idCCorrenteEsp) {
+		this.idCCorrenteEsp = idCCorrenteEsp;
 	}
 
 	public double getCartaoCredito() {

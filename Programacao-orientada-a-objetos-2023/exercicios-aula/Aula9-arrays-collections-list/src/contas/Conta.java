@@ -2,40 +2,56 @@ package contas;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import extratos.Extrato;
 import operacoes.Operacoes;
 
 public abstract class Conta implements Extrato, Operacoes{
 	
-	private int numero;
+	private int idConta;
+	private int numero;	
 	private int agencia;
 	private String titular;
 	protected double saldo;
 	private String tipo; 
 	//private static final totalDeContas;
 	
+	public static Map<Integer, Conta> mapaDeContas = new HashMap<>();
+
 	public Conta() {
 		// totalDeContas++	
 	}
 	
-	public Conta(int numero, int agencia, String titular, String tipo) {
+	public Conta(int idConta, int numero, int agencia, String titular, String tipo) {
 		// totalDeContas++
 		// this.numero = totalDeContas;
+		this.idConta = idConta;
 		this.numero = numero;
 		this.agencia = agencia;
 		this.titular = titular;
 		this.tipo = tipo;
 	}
 
-	public Conta(int numero, int agencia, String titular, String tipo, double depositoInicial) {
+	public Conta(int idConta, int numero, int agencia, String titular, String tipo, double depositoInicial) {
 		// totalDeContas++
 		// this.numero = totalDeContas;
+		this.idConta = idConta;
 		this.numero = numero;
 		this.agencia = agencia;
 		this.titular = titular;
 		this.tipo = tipo;
 		depositar(depositoInicial);
+	}
+	
+
+	public int getIdConta() {
+		return idConta;
+	}
+
+	public void setIdConta(int idConta) {
+		this.idConta = idConta;
 	}
 
 	public int getAgencia() {

@@ -1,8 +1,5 @@
 package contas;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class ContaPoupanca extends Conta {
 	
 	private double rendimento;
@@ -11,13 +8,13 @@ public class ContaPoupanca extends Conta {
 		super();
 	}
 
-	public ContaPoupanca(int numero, int agencia, String titular, double rendimento) {
-		super(numero, agencia, titular);
+	public ContaPoupanca(int numero, int agencia, String titular, String tipo, double rendimento) {
+		super(numero, agencia, titular, tipo);
 		this.rendimento = rendimento;
 	}
 
-	public ContaPoupanca(int numero, int agencia, String titular, double depositoInicial, double rendimento) {
-		super(numero, agencia, titular, depositoInicial);
+	public ContaPoupanca(int numero, int agencia, String titular, String tipo, double depositoInicial, double rendimento) {
+		super(numero, agencia, titular, tipo, depositoInicial);
 		this.rendimento = rendimento;
 	}
 
@@ -31,23 +28,7 @@ public class ContaPoupanca extends Conta {
 	
 	public void atualizaSaldo() {
 		saldo += saldo * rendimento;
-	}
-
-	@Override  // não tem cobrança de taxa
-	public void sacar(double valor) {
-		saldo -= valor;
-	}
-	
-	@Override
-	public void imprimeExtrato() {
-		System.out.println("### Extrato da Conta Poupança ###");
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/aaaa HH:mm:ss");
-		Date date = new Date();
-		System.out.println("Titular: " + this.getTitular());
-		System.out.println("Número da conta: " + this.getNumero());
-		System.out.println("Saldo: " + this.getSaldo());
-		System.out.println("Data: " + sdf.format(date));
-	}
+	}	
 
 	@Override
 	public String toString() {

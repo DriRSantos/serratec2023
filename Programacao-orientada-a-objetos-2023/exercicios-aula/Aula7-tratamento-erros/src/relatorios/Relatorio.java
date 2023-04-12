@@ -10,7 +10,7 @@ public class Relatorio {
 		return fun.getSalario() + fun.getBonificacao();
 	}
 		
-	public void imprimirGastos(Funcionario fun) {		
+	public void imprimir(Funcionario fun) {		
 		totalGastos += fun.getSalario() + fun.getBonificacao();
 		System.out.print(fun.getNome() + ", bonificacão "+  fun.getBonificacao() 
 						+ ", salário: " + fun.getSalario() + ", total: " + calculaFolhaPagamento(fun));
