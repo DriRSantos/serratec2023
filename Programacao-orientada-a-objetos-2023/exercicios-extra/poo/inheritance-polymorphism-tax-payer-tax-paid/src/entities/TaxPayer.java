@@ -29,8 +29,8 @@ public abstract class TaxPayer {
 	public void setAnnualIncome(Double annualIncome) {
 		this.annualIncome = annualIncome;
 	}
-
 	
+	public abstract double tax();	
 	
 	@Override
 	public String toString() {

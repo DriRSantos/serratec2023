@@ -8,11 +8,9 @@ import java.util.Map;
 
 import contas.Conta;
 import contas.ContaCorrente;
-import pessoas.Assistente;
 import pessoas.Funcionario;
 import pessoas.Gerente;
 import pessoas.OperadorDeCaixa;
-import relatorios.Relatorio;
 
 public class Principal {
 
@@ -145,7 +143,7 @@ public class Principal {
 		
 		System.out.println("\n==== MAP CLIENTE >< CONTA ========");
 		
-		System.out.println(Conta.mapaDeContas.get(21));
+		
 		
 		
 	}	

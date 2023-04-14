@@ -1,25 +1,29 @@
 package entities;
 
+import entities.enums.AccountEnum;
 import procedures.Procedure;
 
 public class Account implements Procedure {
 
 	private int accountNumber;
 	private String holder;
-	private double balance;
+	protected double balance;
+	private AccountEnum accountType;
 
 	public Account() {
 
 	}
 	
-	public Account(int accountNumber, String holder) {
+	public Account(int accountNumber, String holder, AccountEnum accountType) {
 		this.accountNumber = accountNumber;
 		this.holder = holder;
+		this.accountType = accountType;
 	}
 
-	public Account(int accountNumber, String holder, double initialDeposit) {
+	public Account(int accountNumber, String holder, AccountEnum accountType, double initialDeposit) {
 		this.accountNumber = accountNumber;
 		this.holder = holder;
+		this.accountType = accountType;
 		deposit(initialDeposit);
 	}
 
@@ -37,6 +41,14 @@ public class Account implements Procedure {
 
 	public double getBalance() {
 		return balance;
+	}
+	
+	public AccountEnum getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(AccountEnum accountType) {
+		this.accountType = accountType;
 	}
 
 	public void deposit(double amount) {
