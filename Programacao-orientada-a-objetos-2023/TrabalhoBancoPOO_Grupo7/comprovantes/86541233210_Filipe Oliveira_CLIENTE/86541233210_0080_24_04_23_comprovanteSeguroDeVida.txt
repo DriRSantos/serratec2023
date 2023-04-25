@@ -1,0 +1,11 @@
+*************** COMPROVANTE SEGURO DE VIDA ********************
+Nome = Filipe Oliveira
+CPF = 865.412.332-10
+Agência: 0080
+Conta: 281564
+O valor pago na contratação do Seguro de Vida foi de: R$ 1500.00
+O valor segurado após taxação foi de: R$ 1200.00
+Você pagou de tarifa R$ 300.00
+Operação realizada em: 24/04/2023 21:24:03
+*************************************************************
+

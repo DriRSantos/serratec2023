@@ -1,0 +1,8 @@
+*************** SAQUE ***************
+CPF: 80466528906
+Agencia: 5086
+Conta: 681245
+Valor do saque: R$5600.0
+Operação realizada em: 24/04/2023 13:33:53
+************ FIM DO SAQUE ************
+
