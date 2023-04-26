@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Document</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <!-- Aba de login (é comum fazer comentários no javascript)-->
+        <h1>Insira a senha...</h1>
+
+        <!-- o body tem uma margem padrão, repare canto esquerdo imagem (ELA SOME COM O MARGIN 0 NO CSS) -->
+        <!-- src = source (fonte) // alt = alternative text (TEM QUE FAZER ALT NA IMAGEM) -->
+        <img src="https://arquivos.tribunadepetropolis.com.br/media/2022/06/12113822/Serratec-completa-tres-anos-de-atuacao-na-regiao-serrana.jpg" alt="Serratec" />
+        <h1>Adriana Neves</h1> 
+
+        <!-- pode deixar somente disabled sem o true, quando for true, os dois abaixo são o mesmo --> 
+        <input type="text" disabled="true">
+        <input type="text" disabled> 
+        
+        <!-- hidden é um booleano que fala para não mostrar o nome -->
+        <h1 hidden>Testando booleano hidden</h1>
+        <br>
+        <!-- aspas simples e duplas pode usar para inserção de um ou mais caractere, repare nas aspas trocadas -->
+        <input type="text" value="Olá, galera. Meu nome é 'Dri'">
+        <input type="text" value='Olá, galera. Meu nome é "Dri'>
+        <br>
+
+        <br>
+        <!-- Nunca omitir as aspas! horrível, não fazer o especificado abaixo -->
+        <!-- Anchor tag <a> -->
+        <a href=https://google.com target="blank">Ir para o Google</a>
+        <!-- Correto -->
+        <a href="https://google.com" target="blank">Ir para o Google</a>
+
+        <br>
+        <br>
+        <a href="https://serratec.org/residencia/">
+            <img src="https://arquivos.tribunadepetropolis.com.br/media/2022/06/12113822/Serratec-completa-tres-anos-de-atuacao-na-regiao-serrana.jpg" 
+                alt="Serratec" width="200" height="100" /></a>
+
+        <!-- Class, id, style são os atributos globais mais importantes -->
+        <h1 id="vermelho"> Nome </h1> <!-- id é PARA ELEMENTOS ÚNICOS -->
+        <p> <em>Dri Neves </em></p>
+
+        <h2 class = "vermelho" style="color:green">Idade</h2> 
+        <p>Indefinida </p> <!-- tag style troca a cor, não use TAG Style assim, concentre no arquivo CSS -->
+
+        <h2 class = "azul">Hobby</h2> <!-- Class é para vários elementos ao mesmo tempo -->
+        <p>Tocar violão</p>            
+    </body>
+</html>

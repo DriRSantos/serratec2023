@@ -1,4 +1,3 @@
-
 # serratec 2023
 
 Lógica de programação
@@ -12,9 +11,9 @@ Banco de dados (Dbeaver, SQLite):
 
 Programação Orientada a Objetos (Java)
 
-Integração via API
-
 FrontEnd Essencial (HTML, Javascripte CSS)
+
+Integração via API
 
 Desenvolvimento de API RESTFUL (Java)
 
@@ -31,7 +30,14 @@ Introdução à gestão de projetos e metodologias ágeis
 
 ## Etiquetas
 
-
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
+ [![JAVA](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)]()
 
+ [![Eclipse](https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=eclipse&logoColor=white)]()
+
+[![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)]()
+
+[![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)]()
+
+[![javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)]()
