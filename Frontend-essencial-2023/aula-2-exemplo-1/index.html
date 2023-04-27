@@ -1,0 +1,164 @@
+<!DOCTYPE html> <!-- serve para que alguns computadores entendam que está usando HTML5 -->
+<html lang="pt-BR"> <!-- inicio da cadeia de elementos head e body -->
+
+<head> <!-- cabeça -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Document </title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body> <!-- corpo -->
+    <header> <!-- HIERARQUIA IMPORTANTE!! Cabeçalho, que fica na parte superior da página, dentro do body -->
+        <section> <!-- fuunciona como uma div, mas não É A MESMA COISA< é interpretado de forma diferente  -->
+            <h1> Características pessoais</h1> <!-- geralmente apenas 1 por pagina -->
+            <div id="endereço"> <!-- importante colocar a hierarquia correta -->
+                <label for=""></label>
+                <input type="text">
+            </div>
+            </h1>
+        </section>
+    </header>
+
+    <h1 class="vermelho" contenteditable=""> Nome </h1> <!-- coloca o elemento como editavel -->
+    <p><em>Dri Neves </em></p>
+
+    <h2 class="vermelho" style="color:green" hidden>Idade</h2> <!-- hidden esconde -->
+    <p>Indefinida </p> <!-- a tag de cor pode ser usada como hashcode ou rgb ou rgba (rgb permite colocar opacidade)-->
+
+    <h2 class="vermelho" style="color: rgb(156, 200, 86)">Idade</h2>
+    <p>Indefinida </p> <!-- a tag de cor pode ser usada como hashcode ou rgb ou rgba (rgba permite colocar opacidade)-->
+
+    <h2 class="azul">Hobby</h2>
+    <p>Tocar violão</p>
+
+    <!-- tabindex permite escolher como pular os campos com TAB, title mostra a mensagem por cima, campo type pode passar os tipos -->
+    <p>Tabindex permite escolher a forma do TAB passar pelos campos abaixo, aperte TAB</p>
+    <div id="container">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" title="Por favor, &nbsp insira seu nome" tabindex="1" />
+        <label for="idade">Idade</label>
+        <input type="number" name="idade" tabindex="3" />
+        <label for="genero">Gênero</label>
+        <input type="text" name="genero" tabindex="2" />
+        <label for="cpf">CPF</label>
+        <input type="number" name="cpf" title="Digite apenas numeros" tabindex="4" />
+    </div> <!-- é bom separar os elementos por container /  &nbsp pula espaço-->
+
+    <div id="container"> <!-- sempre usar maior e menor assim, não usar < ou > , dá erro -->
+        <p>Messi &lt; Ronaldo</p>
+        <p> Messi &gt; Ronaldo </p>
+        <p> Messi &amp; Ronaldo </p>
+        <p> Messi &apos; Ronaldo (apostrofo) </p>
+    </div>
+
+    <div id="container">
+        <li>Teste 1</li> <!-- li = LIST ITEM (existe lista horizontal ou vertical )-->
+        <li>Teste 2</li>
+        <li>Teste 3</li>
+        <li>Teste 4</li>
+
+        <ul> <!-- CONFIGURACAO DA LISTA, TEM QUE ESPECIFICAR SE É UL ou OL, não ordenada ou ordenada -->
+            <li>Teste 1</li>
+            <li>Teste 2</li>
+            <li>Teste 3</li>
+            <li>Teste 4</li>
+        </ul>
+
+        <ol> <!-- CONFIGURACAO DA LISTA, TEM QUE ESPECIFICAR SE É UL ou OL, não ordenada ou ordenada -->
+            <li>Teste 1 </li>
+            <li>Teste 2</li>
+            <li>Teste 3</li>
+            <li>Teste 4</li>
+        </ol>
+    </div>
+
+    <div id="container"> <!-- citações é pouco usado -->
+        <p>A citação abaixo fica com o tab </p>
+        <blockquote cite="https://google.com">Testando citação com blockquote cite</blockquote>
+        <p>Citação com Cite abaixo não fica com tab </p>
+        <cite cite="https://google.com">Testando citação com cite</cite>
+    </div>
+
+    <div id="container">
+        <h2> Glossário</h2>
+        <dl> <!-- lista descritiva -->
+            <dt>Hypertext</dt> <!-- titulo -->
+            <dd>É um hipertexto</dd> <!-- descreve -->
+
+            <dt>Markup</dt> <!-- titulo -->
+            <dd>É uma marcação</dd>
+
+            <dt>Language</dt> <!-- titulo -->
+            <dd>É uma linguagem</dd>
+        </dl>
+    </div>
+
+    <div id="container">
+        <p>Code para inserir partes genericas de codigo</p>
+        <pre> <!-- mostra o formato de código , REPRESENTAÇÃO DE CÓDIGO -->
+            <code>
+                if(nmae == "Dri"){
+                    return "Você logou!"
+                }
+            </code>
+        </pre>
+    </div>
+
+    <div id="container">
+        O que muda entre div e span, não tem nenhum tipo de estilização no span
+        e o display é inline. A div tem o display diferente, é DISPLAY BLOCK.
+        <div>"Olá mundo"</div>
+        <span>"Olá mundo"</span>
+
+        <p> Usando address para inserir detalhes de contato
+        <address>Dri, <strong>Petropolis, RJ</strong></address>
+        </p>
+    </div>
+
+    <div id="container"> <!-- div container é o de fora -->
+        <h1>Curriculo</h1>
+
+        <div> <!-- criou o bloco dentro da outra div SPAN E DIV SÃO OTIMOS PARA ESTILIZAR-->
+            <img src="" alt=""> <!-- DIV estiliza -->
+            <div>
+                <h3>Nome</h3>
+                <span>Dri</span>
+                <h3>Teste</h3>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="container"> <!-- hrefs para email e telefone, também pode usar fragmentos (bookmark) -->
+        <p> <a href="https://google.com" target="_blank"> ir para Google</a><br>
+        <a href="tel:+552499999999">ligar</a></p>
+    </div>
+
+    <div id="container"><!-- CRIANDO TABELAS -->
+        <table>
+            <caption>Pessoas por idade</caption>
+        
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>João</td>
+                    <td>22</td>
+                    <td>Maria</td>
+                    <td>13</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer> <!--footer também fica dentro do body -->
+    </footer>
+</body>
+
+</html>

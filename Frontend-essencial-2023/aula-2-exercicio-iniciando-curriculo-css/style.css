@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
+
+header {
+    padding: 0px;
+    height: 30px;
+    font-size: x-large;
+    font-weight: bolder;
+    font-style: italic;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+}
+
+/* width do header e body em 100%, para eles ocuparem a página toda. Adiciona margin 0 e padding: 0; 
+para o body remover margin e padding padrão do navegador. */
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.float-parent-element {
+    width: 100%;
+    height: 100px;
+}
+
+.float-child-element {
+    float: right;
+    width: 10%;
+}
+
+.botao {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 9px;
+    font-size: large;
+    height: 25px;
+    margin: 2%;
+    padding: 2px;
+    text-align-last: center;
+}
+
+/*  .red {
+    background-color: rgb(243, 234, 223);
+    border: 1px solid black;
+    border-radius: 9px;
+    font-size: large;
+    height: 25px;
+    margin: 0%;
+    text-align-last: center;
+} */
+
+/* div {
+    align-items: center;
+    border: 1px solid blue;
+} */
+
+h1 {
+    font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    margin-bottom: 0%;
+    margin-top: 0%;
+    /* border: 8px solid yellow; */
+}
+
+h2 {
+    color: black;
+    margin-bottom: 1%;
+    margin-top: 0%;
+    /* border: 10px solid green; */
+}
+
+h3 {
+    color: blue;
+    margin-bottom: 0%;
+    margin-top: 0%;
+    /* border: 10px solid green; */
+}
+
+img {
+    max-width: 100%;
+    max-height: auto;
+}
+
+.img1 {
+    width: 170px;
+    height: 170px;
+    margin: 0px;
+    padding: 0px;
+    border: 4px solid white;
+    float: left;
+}
+
+p {
+    margin-top: 0%;
+    /* border: 5px solid red; */
+}
+
+a:focus {
+    text-decoration: none;
+    background: #bae498;
+}
+
+a:hover {
+    text-decoration: none;
+    background: rgb(43, 123, 243);
+}
+
+.produtorcont__info {
+    margin: 3px 0;
+}
+
+#tese p:first-of-type {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.my-hr {
+    border-top: 2px solid #000;
+    width: 70%;
+    margin: 10px 0;
+}
+
+.line-5 hr {
+    height: 10px;
+    border: 0;
+    background: black;
+    width: 70%;
+}

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
+
+/* h1{
+  color: red;
+  font-size: 18px;
+} 
+font-size é properties*/
+
+* {
+    background-color: red;
+    color:blue;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  body{
+    background: url(https://upload.wikimedia.org/wikipedia/pt/b/bc/The_Last_of_Us_girafa.png);
+  }
+  
+  div {
+    color: yellow;
+  }
+  
+  /*se colocar div antes do #azul, o p não vai reconhecer, somente quem for div*/
+  #azul{
+    color: blue;
+  }
+  
+  div p {
+    color: black;
+  }
+  
+  /* indica que o primeiro filho da div muda para outra cor e não todos*/
+  div p:first-child{
+    color: green;
+  }
+  
+  
