@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, header, input, textarea, a{
+    font-size: 1rem;
+}
+
+/* header{       -- num1 --
+    width: 100vw;
+    height: 80px;
+    border: 1px solid blue;
+    background: blue;
+    position: fixed;
+}
+
+main{
+    width: 100vw;
+    height: 100vw;
+    background: var(--principal);
+    border: 1px solid red;
+    background: grey;
+    padding-top: 80px;
+} */
+
+/* num2 div é display block, para ficar inline adiciona isso */ 
+/*  display: block; div é display block, muito usado para fixar coisa na tela */
+/* div {
+   border: 1px solid red;
+   display: inline;  
+} */
+
+/* span é aumtomaticamente inline */
+/* span{ 
+    border: 1px solid red;
+} */
+
+#div-parent{
+    display: flex; 
+    /* flex-direction: column;  se não especificar a direction, por padrão é row (linha) */
+    flex-direction: row;
+    justify-content: center;  /* main axis */
+    align-items: center;  
+
+   flex-wrap: wrap; /*usa o wrap para fazer a linha quebrar se tiver muitos elementos div */
+    /* gap: 20px;  se não colocar o gap ele dá a fatia sem conta com o espaço*/  
+    border: 1px solid blue;
+    height: 100vh;
+}
+
+#div1, #div2, #div3, #div4{
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #div1{ especifica a proporção que deseja para esta div se tiver gap ou não
+    flex: 1;
+    height: 50px;
+}
+
+#div2{
+    flex: 2; vai dar duas fatias para esta div, do tamanho que sobrou na tela
+    height: 50px;
+}
+
+#div3{
+    flex: 3; 
+    height: 50px;
+} */

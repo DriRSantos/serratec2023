@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarala&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-size: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #BFD5FF 30.21%, #7B43F1 75%);
+    font-family: 'Sarala', sans-serif;
+    /* background: linear-gradient(180deg, #65C4FA 18.23%, #3043F0 96.87%); */
+}
+
+img {
+    max-width: 100%;
+    max-height: auto;
+    border-radius: 9px;
+} /*  especifica o valor total 100% para ela alterar tamanho conforme muda tamanho da pagina */
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font: x-large bolder italic;
+    padding: 5px;
+    background: linear-gradient(180deg, #63D7E7 30.21%, #3094F0 75%);
+}
+
+.header-img {    
+    height: 132px;
+    margin-right: 30%;
+    border-radius: 9px;
+}
+
+#header-menu{
+    display: flex;
+    margin-right: 5%;
+    gap: 32px;
+}
+
+.header-menu-item {
+    font-family: 'Sarala', sans-serif;
+    font-size: large;
+    color: #2d43d3;
+}
+
+.container {
+    border-top: 0.5px solid black;   
+    margin-bottom: 30px;
+}
+
+.container-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container-top-img {    
+    width: 172px;
+    height: 170px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 8px;
+    margin-left: 7%;
+}
+
+.container-top-data {
+    margin-right: 30%;
+}
+
+.container-middle, .container-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.experience-title {
+    margin-left: 8%;
+}
+
+.experience{
+    margin-right: 8%;
+}
+
+.education-title{
+    margin-left:13%;
+}
+
+h1.nome {
+    font-style: italic;
+    font-size: 32px;
+}
+
+h2 {
+    color: black;
+}
+
+h3 {
+    color: blue;
+}
+
+a:focus {
+    text-decoration: none;
+    background: #bae498;
+}
+
+a:hover {
+    text-decoration: none;
+    background: rgb(111, 25, 187);
+}
+
+#tese p:first-of-type {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.my-hr {
+    border-top: 2px solid #000;
+    width: 70%;
+    margin: 10px 0;
+
+}
+
+.line-5 hr {
+    height: 10px;
+    border: 0;
+    background: black;
+    width: 70%;
+}
+
+button{
+    background-color: #2d43d3;
+    color: white;
+}
