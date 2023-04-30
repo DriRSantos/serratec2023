@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <div id="container">
+        <div class="box" id="top-left"></div>
+        <div class="box" id="top-right"></div>
+        <div class="box" id="bottom-left"></div>
+        <div class="box" id="bottom-right"></div>
+        <div class="box" id="center"></div>
+    </div> -->
+
+    <!-- função Alert para abrir a janelinha de alerta na tela, como um console.log, mas que aparece na tela
+    não acessa objetos -->
+    <button onClick="alert('Funcionei')">Clique me!</button>
+
+    <!-- botão para atribuir a função de modo dinâmico, ele não vai fazer nada mas 
+    é possível acessar pelo document.getElementById("testBtn").onClick = function() { alert("Foi!") } no Inspecionar 
+    e pelo document.getElementById("testBtn").onmouseover = function() { alert("Foi!") } -->
+    <button id="testBtn">Click me!</button>
+
+    <p> <label for="">Nome</label>
+        <input type="text" id="name" />
+    </p>
+    <label for="password">Senha</label>
+    <input type="text" id="password" />
+
+    <button onclick="validateForm()">Enviar</button>
+
+    <h1 id="value"></h1>
+    <button onclick="toggle()">Trocar!</button>
+
+    <h1 id="pessoa"></h1>
+    <button onclick="document.getElementById('pessoa').innerHTML = pessoa.tocar()">Pericles</button>
+
+    <p id="numbers"></p> <!-- imprime o Array na tela -->
+
+    <!-- <script src="./script.js"></script> USAR COM DEFER lA EM CIMA -->
+</body>
+
+</html>
