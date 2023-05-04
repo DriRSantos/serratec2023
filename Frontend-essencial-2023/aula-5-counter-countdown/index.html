@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>Timer challenge</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>The Final Countdown</h1>
+            <hr>
+            <div class="video">
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/9jK-NcRmVcw?autoplay=1"></iframe>
+            </div>
+        </header>
+
+        <div class="button">
+            <label for="timer">Activate the timer, type the seconds you want</label>
+            <div class="timer-data">
+                <input type="number" id="number" />
+            </div>
+            <button id="btnCounter" onclick="initiateTimer()">Start!</button>
+            <div id="countdown"></div>
+        </div>
+
+        <footer class="footer">
+            <hr> Bye bye!
+            <hr>
+        </footer>
+    </div>
+</body>
+
+</html>
