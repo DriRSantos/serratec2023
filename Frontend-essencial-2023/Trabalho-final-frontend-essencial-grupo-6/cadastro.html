@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cadastro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="shortcut icon" href="./src/logo-fanaticos.png" type="image/x-icon" />
+    <script src="./cadastro.js" defer></script>
+    <title>Crie sua conta! | FãNáticos</title>
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <a href="./index.html" class="logo"><img src="./src/logo-fanaticos.png" alt=""></a>
+            <ul class="menuprincipal">
+                <li><a href="./index.html">Início</a></li>
+                <li><a href="./masculino.html">Masculino</a></li>
+                <li><a href="./feminino.html">Feminino</a></li>
+                <li><a href="./index.html">Infantil</a></li>
+            </ul>
+            <ul class="login">
+                <!--######## APARECE APENAS QUANDO USUARIO ESTA LOGADO ##########-->
+                <div id="logado" style="display: none">
+                    <div class="bem-vindo">
+                        <h1>Bem-vindo(a), <span id="nomeCliente"></span></h1>
+                        <button id="logoutBtn" onclick="logout()">Sair</button>
+                    </div>
+                </div>
+                <li><img src="./src/user-interface.png" alt="img-login"><a href="./login.html">Login</a></li>
+                <li><img src="./src/add-user (1).png" alt="img-login"><a href="./cadastro.html">Criar Conta</a></li>
+            </ul>
+            <div id="divBusca">
+                <input type="text" id="txtBusca" placeholder="Buscar..." />
+                <img src="./src/lupa.png" id="btnBusca" alt="Buscar" />
+            </div>
+            <div class="cart">
+                <a href="./carrinho.html"><img src="./src/shopping-cart.png" alt="Carrinho de compras"></a>
+            </div>
+
+            <!-- MENU MOBILE que aparece quando reduz tela -->
+            <div class="mobile-menu-icon">
+                <button id="btnMostrarMenu" onclick="mostrarMenu()">
+                    <img src="src/menu-hamburger.png" alt="">
+                </button>
+            </div>
+            <div class="mobile-menu">
+                <ul class="m-menuprincipal">
+                    <li><a href="./index.html">Início</a></li>
+                    <li><a href="./masculino.html">Masculino</a></li>
+                    <li><a href="./feminino.html">Feminino</a></li>
+                    <li><a href="./infantil.html">Infantil</a></li>
+                    <ul class="m-login">
+                        <!--######## APARECE APENAS QUANDO USUARIO ESTA LOGADO ##########-->
+                        <li id="logado">
+                            <span id="m-nomeCliente"></span>
+                            <button id="m-logoutBtn" onclick="logout()"><i class='bx bx-log-out'
+                                    id="btnLogout"></i></button>
+                        </li>
+                        <li id="loginLink"><a href="./login.html">Login</a></li>
+                        <li id="cadastroLink"><a href="./cadastro.html">Criar Conta</a></li>
+                        <li><a href="./carrinho.html">Ver Carrinho</a></li>
+                    </ul>
+                </ul>
+            </div>
+        </header>
+        <div id="barraPreta">
+        </div>
+        <!--Início dos Produtos-->
+        <section class="formulario">
+            <form id="cadastro-usuario">
+                <div class="form">
+                    <h1>Cadastro de Cliente</h1>
+                    <p>Preencha os campos abaixo para criar sua conta.</p>
+                    <hr>
+
+                    <label for="nome"><b>Nome completo</b></label>
+                    <input type="text" placeholder="Digite o nome" name="nome" id="nome" required>
+
+                    <label for="senha"><b>Senha</b></label>
+                    <input type="password" placeholder="Entre com a senha" name="senha" id="senha" required>
+
+                    <label for="repetir-senha"><b>Repetir Senha</b></label>
+                    <input type="password" placeholder="Repetir senha" name="repetir-senha" id="repetir-senha" required>
+
+                    <label for="cpf"><b>CPF</b></label>
+                    <input type="text" placeholder="Entre com CPF" name="cpf" id="cpf" required>
+
+                    <label for="cep"><b>CEP</b></label>
+                    <input type="text" placeholder="Entre com CEP" name="cep" id="cep" required>
+
+                    <label for="bairro"><b>Bairro</b></label>
+                    <input type="text" placeholder="Entre com bairro" name="bairro" id="bairro" required>
+
+                    <label for="localidade"><b>Localidade</b></label>
+                    <input type="text" placeholder="Entre com localidade" name="localidade" id="localidade" required>
+
+                    <label for="uf"><b>UF</b></label>
+                    <input type="text" placeholder="Entre com UF" name="uf" id="uf" required>
+
+                    <hr>
+                    <!--CORRIGIR O ALERTA APARECENDO ANTES DA VALIDACAO -->
+                    <p>Ao criar sua conta na FãNáticos você concorda com nossos <a
+                            href="./política-de-privacidade.html">Termos de Privacidade</a>.</p>
+                    <button type="submit" class="btnRegistrar" onclick="salvarDadosCliente(event)">Registrar</button>
+                </div>
+
+                <div id="login-container">
+                    <p class="login-p">Já tem uma conta na Fãnáticos? <a href="./login.html">Faça login aqui.</a>.</p>
+                </div>
+            </form>
+        </section>
+        <hr>
+        <!--Fim -->
+        <!-- Início do Contato -->
+        <section class="contato">
+            <div class="info-contato">
+                <div class="info">
+                    <img src="./src/logo-fanaticos.png" alt="logo-loja-fanaticos">
+                    <p>Residência Serratec</p>
+                    <p>Grupo 6</p>
+                    <p>(24) 2222-2222</p>
+                    <div class="social-icon">
+                        <a href="#"><i class='bx bxl-facebook'></i></a>
+                        <a href="#"><i class='bx bxl-twitter'></i></a>
+                        <a href="#"><i class='bx bxl-instagram'></i></a>
+                        <a href="#"><i class='bx bxl-youtube'></i></a>
+                        <a href="#"><i class='bx bxl-linkedin'></i></a>
+                    </div>
+                </div>
+                <div class="suport">
+                    <h4>Suporte</h4>
+                    <p><a href="./faq.html" class="href">FAQ - Perguntas Frequentes</a></p>
+                    <p><a href="./sobre-nos.html" class="href">Sobre nós</a></p>
+                    <p><a href="./política-de-privacidade.html" class="href">Política de privacidade</a></p>
+                    <p><a href="./política-de-reembolso.html" class="href">Política de reembolso</a></p>
+                    <p><a href="./política-de-frete.html" class="href">Política de frete</a></p>
+                </div>
+                <div class="atendimento">
+                    <h4>Central de Atendimento</h4>
+                    <h5>Horário de Atendimento:</h5>
+                    <p>Seg à Sex. 9:00h às 19:00h</p>
+                    <h5>Nosso WhatsApp:</h5>
+                    <p>(24) 98765-4321</p>
+                    <h5>Nosso E-mail:</h5>
+                    <p>suportefanaticos@email.com.br</p>
+                </div>
+            </div>
+        </section>
+        <!--Fim do Contato-->
+        <div class="rodape">
+            <p>Copyright © @2023. Todos os direitos reservados. Design grupo 6 - Serratec</p>
+        </div>
+
+    </div>
+</body>
+
+</html>
