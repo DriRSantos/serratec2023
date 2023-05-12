@@ -1,0 +1,66 @@
+package com.residencia.biblioteca.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.residencia.biblioteca.entities.Aluno;
+import com.residencia.biblioteca.services.AlunoService;
+
+@RestController
+@RequestMapping("/alunos")
+public class AlunoController {
+
+	@Autowired
+	AlunoService alunoService;
+	
+	@GetMapping
+	public ResponseEntity<List<Aluno>> getAllAlunos() {
+		return new ResponseEntity<>(alunoService.getAllAlunos(),
+				HttpStatus.OK);
+//		return alunoService.getAllAlunos();
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Aluno> getAlunoById(Integer id) {
+		//		return alunoService.getAlunoById(id);
+		Aluno alunoResponse = alunoService.getAlunoById(id);
+		if(alunoResponse == null) {
+			return new ResponseEntity<>(null,
+					HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(alunoResponse,
+					HttpStatus.OK);
+		}		
+	}
+	
+	@PostMapping
+	public Aluno saveAluno(Aluno aluno) {
+		return alunoService.saveAluno(aluno);
+	}
+	
+//	@PutMapping("/{id}")
+	@PutMapping
+	public Aluno updateAluno(Aluno aluno, Integer id) {
+		return alunoService.updateAluno(aluno, id);
+	}
+	
+//	public void deleteAluno(Integer id) {
+//		alunoService.deleteAluno(id);
+//	}
+	
+	@DeleteMapping("/{id}")
+	public Boolean delAluno(Integer id) {
+		return alunoService.delAluno(id);
+	}	
+}

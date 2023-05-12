@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -32,11 +34,13 @@ public class Livro {
 	@Column(name = "codigoisbn")
 	private Integer codigoIsbn;
 	
-//	@Column(name = "codigoeditora")
-//	private Integer codigoEditora;
-	
 	@OneToMany(mappedBy = "livro")
 	private List<Emprestimo> emprestimos;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigoeditora", 
+		referencedColumnName = "codigoeditora")
+	private Editora editora;
 
 	public Integer getCodigoLivro() {
 		return codigoLivro;
@@ -77,4 +81,20 @@ public class Livro {
 	public void setCodigoIsbn(Integer codigoIsbn) {
 		this.codigoIsbn = codigoIsbn;
 	}
+
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
+
+	public Editora getEditora() {
+		return editora;
+	}
+
+	public void setEditora(Editora editora) {
+		this.editora = editora;
+	}	
 }
