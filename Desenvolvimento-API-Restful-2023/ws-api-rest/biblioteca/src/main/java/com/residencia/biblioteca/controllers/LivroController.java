@@ -3,6 +3,14 @@ package com.residencia.biblioteca.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,27 +24,44 @@ public class LivroController {
 	@Autowired
 	LivroService livroService;
 	
-	public List<Livro> findAllLivros() {
-		return livroService.findAllLivros();
+	@GetMapping
+	public ResponseEntity<List<Livro>> findAllLivros() {
+		return new ResponseEntity<>(livroService.findAllLivros(),
+				HttpStatus.OK);
 	}
 	
-	public Livro getLivroById(Integer id) {
-		return livroService.getLivroById(id);
+	@GetMapping("/{id}")
+	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
+		if(livroService.getLivroById(id) == null) {
+			return new ResponseEntity<>(null,
+					HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(livroService.getLivroById(id),
+					HttpStatus.OK);
+		}		
 	}
 	
-	public Livro saveLivro(Livro livro) {
-		return livroService.saveLivro(livro);
+	@PostMapping
+	public ResponseEntity<Livro> saveLivro(@RequestBody Livro livro) {
+		return new ResponseEntity<>(livroService.saveLivro(livro), HttpStatus.CREATED);		
 	}
 	
-	public Livro updateLivro(Livro livro, Integer id) {
-		return livroService.updateLivro(livro, id);
+	@PutMapping
+	public ResponseEntity<Livro> updateLivro(@RequestBody Livro livro, Integer id) {
+		return new ResponseEntity<>(livroService.updateLivro(livro, id),
+				HttpStatus.OK);
 	}
 	
-//	public void deleteLivro(Integer id) {
-//		livroService.deleteLivro(id);
-//	}
-	
-	public Boolean delLivro(Integer id) {
-		return livroService.delLivro(id);
-	}	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Boolean> delLivro(@PathVariable Integer id) {							
+		if(livroService.delLivro(id) == true) {
+			return new ResponseEntity<>(livroService.delLivro(id), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(null,
+					HttpStatus.NOT_MODIFIED);
+		}
+	}		
+
 }

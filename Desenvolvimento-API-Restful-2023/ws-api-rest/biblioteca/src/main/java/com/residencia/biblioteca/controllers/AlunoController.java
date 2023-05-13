@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,14 +26,14 @@ public class AlunoController {
 	
 	@GetMapping
 	public ResponseEntity<List<Aluno>> getAllAlunos() {
+//		return alunoService.getAllAlunos();
 		return new ResponseEntity<>(alunoService.getAllAlunos(),
 				HttpStatus.OK);
-//		return alunoService.getAllAlunos();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Aluno> getAlunoById(Integer id) {
-		//		return alunoService.getAlunoById(id);
+	public ResponseEntity<Aluno> getAlunoById(@PathVariable Integer id) {
+		//	return alunoService.getAlunoById(id);
 		Aluno alunoResponse = alunoService.getAlunoById(id);
 		if(alunoResponse == null) {
 			return new ResponseEntity<>(null,
@@ -45,22 +46,25 @@ public class AlunoController {
 	}
 	
 	@PostMapping
-	public Aluno saveAluno(Aluno aluno) {
-		return alunoService.saveAluno(aluno);
+	public ResponseEntity<Aluno> saveAluno(@RequestBody Aluno aluno) {
+		return new ResponseEntity<>(alunoService.saveAluno(aluno), HttpStatus.CREATED);		
 	}
 	
 //	@PutMapping("/{id}")
 	@PutMapping
-	public Aluno updateAluno(Aluno aluno, Integer id) {
-		return alunoService.updateAluno(aluno, id);
+	public ResponseEntity<Aluno> updateAluno(@RequestBody Aluno aluno, Integer id) {
+		return new ResponseEntity<>(alunoService.updateAluno(aluno, id),
+				HttpStatus.OK);	
 	}
 	
-//	public void deleteAluno(Integer id) {
-//		alunoService.deleteAluno(id);
-//	}
-	
 	@DeleteMapping("/{id}")
-	public Boolean delAluno(Integer id) {
-		return alunoService.delAluno(id);
+	public ResponseEntity<Boolean> delAluno(@PathVariable Integer id) {							
+		if(alunoService.delAluno(id) == true) {
+			return new ResponseEntity<>(alunoService.delAluno(id), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(null,
+					HttpStatus.NOT_MODIFIED);
+		}
 	}	
 }

@@ -28,7 +28,7 @@ public class LivroService {
 	
 	public Livro updateLivro(Livro livro, Integer id) {
 //		emprestimoRepository.findById(id).orElseGet(null);
-		return livroRepository.save(livro);
+		return livroRepository.save(livro);		
 	}
 	
 	public void deleteLivro(Integer id) {
