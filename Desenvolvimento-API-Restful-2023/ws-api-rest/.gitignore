@@ -41,7 +41,6 @@ target/
 .settings
 .springBeans
 .sts4-cache
-application.properties
 
 ### Eclipse ###
 .metadata

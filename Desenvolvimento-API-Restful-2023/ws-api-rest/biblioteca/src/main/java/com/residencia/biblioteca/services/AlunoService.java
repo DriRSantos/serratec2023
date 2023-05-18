@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.residencia.biblioteca.dto.AlunoResDTO;
 import com.residencia.biblioteca.entities.Aluno;
 import com.residencia.biblioteca.repositories.AlunoRepository;
 
@@ -19,8 +20,12 @@ public class AlunoService {
 	}
 	
 	public Aluno getAlunoById(Integer id) {
-//		return alunoRepository.findById(id).get();
 		return alunoRepository.findById(id).orElse(null);
+	}
+	
+	public AlunoResDTO getAlunoResById(Integer id) {
+		Aluno aluno = alunoRepository.findById(id).orElse(null);
+		return new AlunoResDTO(aluno.getNome(), aluno.getCpf());		
 	}
 	
 	public Aluno saveAluno(Aluno aluno) {
@@ -29,28 +34,34 @@ public class AlunoService {
 	
 	public Aluno updateAluno(Aluno aluno, Integer id) {
 //		alunoRepository.findById(id);
-		if(id == aluno.getNumeroMatriculaAluno()) {
-			return alunoRepository.save(aluno);
-		}
-		else {
-			return null;
-		}
+		return alunoRepository.save(aluno);
 	}
 	
-	public void deleteAluno(Integer id) {
-		alunoRepository.deleteById(id);
-//		Aluno alunoDeleted = alunoRepository.findById(id).orElse(null);		
-//		System.out.println("Deleted! " + alunoDeleted.getNome());
-	}
-	
-	public Boolean delAluno(Integer id) {
-		alunoRepository.deleteById(id);
+	public Boolean deleteAluno(Integer id) {
 		Aluno alunoDeleted = alunoRepository.findById(id).orElse(null);
-		if(null == alunoDeleted) {
-			return true;
-		}
+		if (alunoDeleted != null) {
+			alunoRepository.deleteById(id);
+			alunoDeleted = alunoRepository.findById(id).orElse(null);
+			if (alunoDeleted != null) {
+				return false;
+			} 
+			else {
+				return true;
+			}
+
+		} 
 		else {
 			return false;
-		}			
+		}
+//		
+//		Aluno alunoDeleted = alunoRepository.findById(id).orElse(null);
+//		if (alunoDeleted != null) {
+//			alunoRepository.deleteById(id);
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+		
 	}
 }

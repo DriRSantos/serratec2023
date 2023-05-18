@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.residencia.biblioteca.dto.AlunoResDTO;
 import com.residencia.biblioteca.entities.Aluno;
 import com.residencia.biblioteca.services.AlunoService;
 
@@ -33,7 +34,6 @@ public class AlunoController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Aluno> getAlunoById(@PathVariable Integer id) {
-		//	return alunoService.getAlunoById(id);
 		Aluno alunoResponse = alunoService.getAlunoById(id);
 		if(alunoResponse == null) {
 			return new ResponseEntity<>(null,
@@ -44,6 +44,20 @@ public class AlunoController {
 					HttpStatus.OK);
 		}		
 	}
+	
+	@GetMapping("/dto/{id}")
+	public ResponseEntity<AlunoResDTO> getAlunoResById(@PathVariable Integer id) {
+		AlunoResDTO alunoResponse = alunoService.getAlunoResById(id);
+		if(alunoResponse == null) {
+			return new ResponseEntity<>(null,
+					HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(alunoResponse,
+					HttpStatus.OK);
+		}		
+	}
+	
 	
 	@PostMapping
 	public ResponseEntity<Aluno> saveAluno(@RequestBody Aluno aluno) {
@@ -58,13 +72,12 @@ public class AlunoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> delAluno(@PathVariable Integer id) {							
-		if(alunoService.delAluno(id) == true) {
-			return new ResponseEntity<>(alunoService.delAluno(id), HttpStatus.OK);
+	public ResponseEntity<Boolean> deleteAluno(@PathVariable Integer id) {	
+		if(alunoService.deleteAluno(id) == true) {
+			return new ResponseEntity<>(alunoService.deleteAluno(id), HttpStatus.OK);			
 		}
 		else {
-			return new ResponseEntity<>(null,
-					HttpStatus.NOT_MODIFIED);
+			return new ResponseEntity<>(null, HttpStatus.NOT_MODIFIED);
 		}
 	}	
 }

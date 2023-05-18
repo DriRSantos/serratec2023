@@ -3,6 +3,9 @@ package com.residencia.biblioteca.entities;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +15,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "codigoEmprestimo"
+		)
 @Entity
 @Table(name = "emprestimo")
 public class Emprestimo {
@@ -30,11 +37,13 @@ public class Emprestimo {
 	@Column(name = "valoremprestimo")
 	private BigDecimal valorEmprestimo;
 	
+//	@JsonBackReference(value = "aluno-emprestimo")
 	@ManyToOne
 	@JoinColumn(name = "numeromatriculaaluno", 
 					referencedColumnName = "numeromatriculaaluno")
 	private Aluno aluno;
 
+//	@JsonBackReference(value = "livro-emprestimo")
 	@ManyToOne
 	@JoinColumn(name = "codigolivro",
 					referencedColumnName = "codigolivro")
