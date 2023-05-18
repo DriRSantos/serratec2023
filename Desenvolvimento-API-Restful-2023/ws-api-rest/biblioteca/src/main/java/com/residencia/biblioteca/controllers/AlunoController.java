@@ -56,8 +56,7 @@ public class AlunoController {
 			return new ResponseEntity<>(alunoResponse,
 					HttpStatus.OK);
 		}		
-	}
-	
+	}	
 	
 	@PostMapping
 	public ResponseEntity<Aluno> saveAluno(@RequestBody Aluno aluno) {

@@ -1,12 +1,15 @@
 package com.residencia.biblioteca.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.residencia.biblioteca.dto.AlunoResDTO;
+import com.residencia.biblioteca.dto.EmprestimoResDTO;
 import com.residencia.biblioteca.entities.Aluno;
+import com.residencia.biblioteca.entities.Emprestimo;
 import com.residencia.biblioteca.repositories.AlunoRepository;
 
 @Service
@@ -25,7 +28,23 @@ public class AlunoService {
 	
 	public AlunoResDTO getAlunoResById(Integer id) {
 		Aluno aluno = alunoRepository.findById(id).orElse(null);
-		return new AlunoResDTO(aluno.getNome(), aluno.getCpf());		
+		
+		if(aluno == null) {
+			return null;
+		}
+	
+		AlunoResDTO alunoDTO = new AlunoResDTO(aluno.getNome(), aluno.getCpf());
+	
+		List<EmprestimoResDTO> listaEmpResDTO = new ArrayList<>();
+		for(Emprestimo emprestimo : aluno.getEmprestimos()) {
+			if(emprestimo.getLivro().getNomeLivro() == null) {
+				return null;
+			}			
+			listaEmpResDTO.add(new EmprestimoResDTO(emprestimo.getDataEmprestimo(), emprestimo.getDataEntrega(), emprestimo.getLivro().getNomeLivro()));
+		}
+		
+		alunoDTO.setListaEmpResDTO(listaEmpResDTO);
+		return alunoDTO;
 	}
 	
 	public Aluno saveAluno(Aluno aluno) {
@@ -53,15 +72,6 @@ public class AlunoService {
 		else {
 			return false;
 		}
-//		
-//		Aluno alunoDeleted = alunoRepository.findById(id).orElse(null);
-//		if (alunoDeleted != null) {
-//			alunoRepository.deleteById(id);
-//			return true;
-//		}
-//		else {
-//			return false;
-//		}
 		
 	}
 }

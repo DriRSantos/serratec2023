@@ -1,9 +1,13 @@
 package com.residencia.biblioteca.dto;
 
+import java.util.List;
+
 public class AlunoResDTO {
 
 	private String nome; 
 	private String cpf;
+	
+	private List<EmprestimoResDTO> listaEmpResDTO;
 	
 	public AlunoResDTO() {
 		super();
@@ -29,5 +33,13 @@ public class AlunoResDTO {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}	
+	}
+
+	public List<EmprestimoResDTO> getListaEmpResDTO() {
+		return listaEmpResDTO;
+	}
+
+	public void setListaEmpResDTO(List<EmprestimoResDTO> listaEmpResDTO) {
+		this.listaEmpResDTO = listaEmpResDTO;
+	}		
 }

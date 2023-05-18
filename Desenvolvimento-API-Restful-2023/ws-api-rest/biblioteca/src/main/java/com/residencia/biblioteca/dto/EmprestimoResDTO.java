@@ -3,20 +3,20 @@ package com.residencia.biblioteca.dto;
 import java.util.Date;
 
 public class EmprestimoResDTO {
-	
+
 	private Date dataEmprestimo;
 	private Date dataEntrega;
-	private LivroResumidoDTO livroResDTO;
-	
+	private String nomeLivro;
+
 	public EmprestimoResDTO() {
 		super();
 	}
 
-	public EmprestimoResDTO(Date dataEmprestimo, Date dataEntrega, LivroResumidoDTO livroResDTO) {
+	public EmprestimoResDTO(Date dataEmprestimo, Date dataEntrega, String nomeLivro) {
 		super();
 		this.dataEmprestimo = dataEmprestimo;
 		this.dataEntrega = dataEntrega;
-		this.livroResDTO = livroResDTO;
+		this.nomeLivro = nomeLivro;
 	}
 
 	public Date getDataEmprestimo() {
@@ -35,11 +35,11 @@ public class EmprestimoResDTO {
 		this.dataEntrega = dataEntrega;
 	}
 
-	public LivroResumidoDTO getLivroResDTO() {
-		return livroResDTO;
+	public String getNomeLivro() {
+		return nomeLivro;
 	}
 
-	public void setLivroResDTO(LivroResumidoDTO livroResDTO) {
-		this.livroResDTO = livroResDTO;
-	}	
+	public void setNomeLivro(String nomeLivro) {
+		this.nomeLivro = nomeLivro;
+	}
 }
