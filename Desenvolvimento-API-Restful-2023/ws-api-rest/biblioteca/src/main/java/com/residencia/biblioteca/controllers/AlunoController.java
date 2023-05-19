@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.residencia.biblioteca.dto.AlunoDtoSave;
 import com.residencia.biblioteca.dto.AlunoResDTO;
 import com.residencia.biblioteca.entities.Aluno;
 import com.residencia.biblioteca.services.AlunoService;
@@ -45,9 +46,24 @@ public class AlunoController {
 		}		
 	}
 	
-	@GetMapping("/dto/{id}")
-	public ResponseEntity<AlunoResDTO> getAlunoResById(@PathVariable Integer id) {
-		AlunoResDTO alunoResponse = alunoService.getAlunoResById(id);
+//	minha solução
+//	@GetMapping("/dto/{id}")
+//	public ResponseEntity<AlunoResDTO> getAlunoResEmpById(@PathVariable Integer id) {
+//		AlunoResDTO alunoResponse = alunoService.getAlunoResById(id);
+//		if(alunoResponse == null) {
+//			return new ResponseEntity<>(null,
+//					HttpStatus.NOT_FOUND);
+//		}
+//		else {
+//			return new ResponseEntity<>(alunoResponse,
+//					HttpStatus.OK);
+//		}		
+//	}	
+	
+	// professor em sala
+	@GetMapping("/{id}/emprestimos")
+	public ResponseEntity<AlunoResDTO> getAlunoResEmpDto(@PathVariable Integer id) {
+		AlunoResDTO alunoResponse = alunoService.getAlunoResEmpDto(id);
 		if(alunoResponse == null) {
 			return new ResponseEntity<>(null,
 					HttpStatus.NOT_FOUND);
@@ -61,6 +77,11 @@ public class AlunoController {
 	@PostMapping
 	public ResponseEntity<Aluno> saveAluno(@RequestBody Aluno aluno) {
 		return new ResponseEntity<>(alunoService.saveAluno(aluno), HttpStatus.CREATED);		
+	}
+	
+	@PostMapping("/dto/criar") //AlunoDtoSave
+	public ResponseEntity<AlunoDtoSave> saveAlunoDto(@RequestBody AlunoDtoSave alunoDtoSave) {
+		return new ResponseEntity<>(alunoService.saveAlunoDto(alunoDtoSave), HttpStatus.CREATED);		
 	}
 	
 //	@PutMapping("/{id}")

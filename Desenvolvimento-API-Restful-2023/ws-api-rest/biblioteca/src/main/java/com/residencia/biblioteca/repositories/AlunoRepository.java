@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.residencia.biblioteca.entities.Aluno;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
-	
+
 	
 }

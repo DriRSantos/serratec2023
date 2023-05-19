@@ -12,11 +12,6 @@ public class LivroResumidoDTO {
 		super();
 	}
 	
-	public LivroResumidoDTO(String nomeLivro) {
-		super();
-		this.nomeLivro = nomeLivro;
-	}
-
 	public LivroResumidoDTO(String nomeLivro, String nomeAutor, Date dataLancamento) {
 		super();
 		this.nomeLivro = nomeLivro;
