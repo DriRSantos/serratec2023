@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.residencia.biblioteca.dto.UsuarioDTO;
 import com.residencia.biblioteca.entities.Usuario;
 import com.residencia.biblioteca.repositories.UsuarioRepository;
 
@@ -14,8 +15,10 @@ public class UsuarioService {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 	
-	public List<Usuario> findAllUsuarios() {
-		return usuarioRepository.findAll();
+	public List<UsuarioDTO> findAllUsuarios() {
+		List<Usuario> listUsuariosDTO = usuarioRepository.findAll();
+		return 
+		
 	}
 	
 	public Usuario getUsuarioById(Integer id) {

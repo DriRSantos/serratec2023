@@ -117,7 +117,7 @@ public class AlunoService {
 //		novoAlunoDto.setNumeroMatriculaAluno(novoAluno.getNumeroMatriculaAluno());
 		
 		Aluno aluno = modelMapper.map(alunoDtoSave, Aluno.class);				
-		Aluno novoAluno = alunoRepository.save(aluno);		
+		Aluno novoAluno = alunoRepository.save(aluno);	
 		return modelMapper.map(novoAluno, AlunoDtoSave.class);
 	}
 	

@@ -1,5 +1,6 @@
 package com.residencia.biblioteca.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -21,7 +22,8 @@ import jakarta.persistence.Table;
 		)
 @Entity
 @Table(name = "emprestimo")
-public class Emprestimo {
+public class Emprestimo implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

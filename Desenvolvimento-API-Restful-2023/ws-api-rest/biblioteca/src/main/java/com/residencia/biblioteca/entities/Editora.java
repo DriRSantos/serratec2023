@@ -1,5 +1,6 @@
 package com.residencia.biblioteca.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -19,7 +20,8 @@ import jakarta.persistence.Table;
 		)
 @Entity
 @Table(name = "editora")
-public class Editora {
+public class Editora implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

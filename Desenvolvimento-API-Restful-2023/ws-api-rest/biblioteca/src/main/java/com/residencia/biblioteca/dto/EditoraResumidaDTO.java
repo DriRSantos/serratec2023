@@ -18,6 +18,8 @@ public class EditoraResumidaDTO {
 		this.codigoEditora = codigoEditora;
 		this.nome = nome;
 	}
+	
+	
 
 	public Integer getCodigoEditora() {
 		return codigoEditora;
