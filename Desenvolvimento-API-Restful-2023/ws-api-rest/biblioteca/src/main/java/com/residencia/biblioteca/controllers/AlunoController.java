@@ -27,15 +27,14 @@ public class AlunoController {
 	AlunoService alunoService;
 	
 	@GetMapping
-	public ResponseEntity<List<Aluno>> getAllAlunos() {
-//		return alunoService.getAllAlunos();
+	public ResponseEntity<List<AlunoDtoSave>> getAllAlunos() {
 		return new ResponseEntity<>(alunoService.getAllAlunos(),
 				HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Aluno> getAlunoById(@PathVariable Integer id) {
-		Aluno alunoResponse = alunoService.getAlunoById(id);
+	public ResponseEntity<AlunoDtoSave> getAlunoById(@PathVariable Integer id) {
+		AlunoDtoSave alunoResponse = alunoService.getAlunoById(id);
 		if(alunoResponse == null) {
 			return new ResponseEntity<>(null,
 					HttpStatus.NOT_FOUND);
@@ -45,22 +44,7 @@ public class AlunoController {
 					HttpStatus.OK);
 		}		
 	}
-	
-//	minha solução
-//	@GetMapping("/dto/{id}")
-//	public ResponseEntity<AlunoResDTO> getAlunoResEmpById(@PathVariable Integer id) {
-//		AlunoResDTO alunoResponse = alunoService.getAlunoResById(id);
-//		if(alunoResponse == null) {
-//			return new ResponseEntity<>(null,
-//					HttpStatus.NOT_FOUND);
-//		}
-//		else {
-//			return new ResponseEntity<>(alunoResponse,
-//					HttpStatus.OK);
-//		}		
-//	}	
-	
-	// professor em sala
+
 	@GetMapping("/{id}/emprestimos")
 	public ResponseEntity<AlunoResDTO> getAlunoResEmpDto(@PathVariable Integer id) {
 		AlunoResDTO alunoResponse = alunoService.getAlunoResEmpDto(id);

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.residencia.biblioteca.dto.UsuarioDTO;
+import com.residencia.biblioteca.dto.UsuarioDtoSave;
 import com.residencia.biblioteca.entities.Usuario;
 import com.residencia.biblioteca.services.UsuarioService;
 
@@ -25,13 +27,13 @@ public class UsuarioController {
 	UsuarioService usuarioService;
 	
 	@GetMapping
-	public ResponseEntity<List<Usuario>> findAllUsuarios() {
+	public ResponseEntity<List<UsuarioDTO>> findAllUsuarios() {
 		return new ResponseEntity<>(usuarioService.findAllUsuarios(),
 				HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getUsuarioById(@PathVariable Integer id) {
+	public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Integer id) {
 		if(usuarioService.getUsuarioById(id) == null) {
 			return new ResponseEntity<>(null,
 					HttpStatus.NOT_FOUND);
@@ -43,8 +45,8 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Usuario> saveUsuario(@RequestBody Usuario usuario) {
-		return new ResponseEntity<>(usuarioService.saveUsuario(usuario), HttpStatus.CREATED);		
+	public ResponseEntity<UsuarioDtoSave> saveUsuario(@RequestBody UsuarioDtoSave usuarioDtoSave) {
+		return new ResponseEntity<>(usuarioService.saveUsuario(usuarioDtoSave), HttpStatus.CREATED);		
 	}
 	
 	@PutMapping

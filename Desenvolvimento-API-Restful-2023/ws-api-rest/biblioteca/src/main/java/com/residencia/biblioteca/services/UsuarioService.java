@@ -2,10 +2,13 @@ package com.residencia.biblioteca.services;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.residencia.biblioteca.dto.UsuarioDTO;
+import com.residencia.biblioteca.dto.UsuarioDtoSave;
 import com.residencia.biblioteca.entities.Usuario;
 import com.residencia.biblioteca.repositories.UsuarioRepository;
 
@@ -15,18 +18,27 @@ public class UsuarioService {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 	
+	@Autowired
+	private ModelMapper modelMapper;
+	
 	public List<UsuarioDTO> findAllUsuarios() {
-		List<Usuario> listUsuariosDTO = usuarioRepository.findAll();
-		return 
-		
+		List<Usuario> listUsuarios = usuarioRepository.findAll();
+		List<UsuarioDTO> listUsuDTO = modelMapper.map(listUsuarios, new TypeToken<List<UsuarioDTO>>(){}.getType());		
+//		List<UsuarioDTO> listUsuDTO = Arrays.asList(modelMapper.map(listUsuarios, UsuarioDTO[].class));		
+		return listUsuDTO;
 	}
 	
-	public Usuario getUsuarioById(Integer id) {
-		return usuarioRepository.findById(id).orElse(null);
+	public UsuarioDTO getUsuarioById(Integer id) {
+		Usuario uEntity = usuarioRepository.findById(id).orElse(null);
+		UsuarioDTO uDto = modelMapper.map(uEntity, UsuarioDTO.class);
+		return uDto;
+		 
 	}
 	
-	public Usuario saveUsuario(Usuario usuario) {
-		return usuarioRepository.save(usuario);
+	public UsuarioDtoSave saveUsuario(UsuarioDtoSave usuarioDtoSave) {
+		Usuario usuario = modelMapper.map(usuarioDtoSave, Usuario.class);				
+		Usuario novoUsuario = usuarioRepository.save(usuario);	
+		return modelMapper.map(novoUsuario, UsuarioDtoSave.class);
 	}
 	
 	public Usuario updateUsuario(Usuario usuario, Integer id) {

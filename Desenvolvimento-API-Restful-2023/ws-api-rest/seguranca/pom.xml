@@ -8,17 +8,14 @@
 		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	
 	<groupId>br.com.residencia</groupId>
 	<artifactId>seguranca</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>seguranca</name>
 	<description>API REST utilizando Spring Security 6</description>
-	
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
