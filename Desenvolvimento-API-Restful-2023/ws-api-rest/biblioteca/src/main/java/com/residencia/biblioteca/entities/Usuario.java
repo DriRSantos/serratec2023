@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "usuario")
@@ -22,9 +24,12 @@ public class Usuario implements Serializable {
 	@Column(name = "user_nome")
 	private String user_nome;
 	
+	@NotBlank
+	@Email
 	@Column(name = "user_email")
 	private String user_email;
 	
+	@NotBlank
 	@Column(name = "user_password")
 	private String user_password;
 

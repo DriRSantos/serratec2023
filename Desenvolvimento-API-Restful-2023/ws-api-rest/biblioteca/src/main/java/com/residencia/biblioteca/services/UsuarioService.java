@@ -1,6 +1,7 @@
 package com.residencia.biblioteca.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -24,7 +25,7 @@ public class UsuarioService {
 	public List<UsuarioDTO> findAllUsuarios() {
 		List<Usuario> listUsuarios = usuarioRepository.findAll();
 		List<UsuarioDTO> listUsuDTO = modelMapper.map(listUsuarios, new TypeToken<List<UsuarioDTO>>(){}.getType());		
-//		List<UsuarioDTO> listUsuDTO = Arrays.asList(modelMapper.map(listUsuarios, UsuarioDTO[].class));		
+//		List<UsuarioDTO> listUsuDTO = Arrays.asList(modelMapper.map(listUsuarios, UsuarioDTO[].class));
 		return listUsuDTO;
 	}
 	
@@ -37,7 +38,7 @@ public class UsuarioService {
 	
 	public UsuarioDtoSave saveUsuario(UsuarioDtoSave usuarioDtoSave) {
 		Usuario usuario = modelMapper.map(usuarioDtoSave, Usuario.class);				
-		Usuario novoUsuario = usuarioRepository.save(usuario);	
+		Usuario novoUsuario = usuarioRepository.save(usuario);
 		return modelMapper.map(novoUsuario, UsuarioDtoSave.class);
 	}
 	

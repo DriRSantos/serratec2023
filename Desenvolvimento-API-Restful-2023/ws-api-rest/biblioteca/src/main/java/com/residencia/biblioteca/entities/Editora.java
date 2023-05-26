@@ -90,5 +90,5 @@ public class Editora implements Serializable{
 
 	public void setLivros(List<Livro> livros) {
 		this.livros = livros;
-	}	
+	}
 }

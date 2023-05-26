@@ -30,17 +30,25 @@ public class LivroController {
 				HttpStatus.OK);
 	}
 	
+//	sem tratamento de exceção
+//	@GetMapping("/{id}")
+//	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
+//		if(livroService.getLivroById(id) == null) {
+//			return new ResponseEntity<>(null,
+//					HttpStatus.NOT_FOUND);
+//		}
+//		else {
+//			return new ResponseEntity<>(livroService.getLivroById(id),
+//					HttpStatus.OK);
+//		}		
+//	}
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
-		if(livroService.getLivroById(id) == null) {
-			return new ResponseEntity<>(null,
-					HttpStatus.NOT_FOUND);
-		}
-		else {
-			return new ResponseEntity<>(livroService.getLivroById(id),
-					HttpStatus.OK);
-		}		
+	public ResponseEntity<Livro> getLivroByIdAlt(@PathVariable Integer id) {
+		return new ResponseEntity<>(livroService.getLivroById(id),
+				HttpStatus.OK);
 	}
+	
 	
 	@PostMapping
 	public ResponseEntity<Livro> saveLivro(@RequestBody Livro livro) {

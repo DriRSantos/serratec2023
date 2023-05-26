@@ -31,20 +31,34 @@ public class AlunoController {
 		return new ResponseEntity<>(alunoService.getAllAlunos(),
 				HttpStatus.OK);
 	}
+
+//	sem tratamento de exceção
+//	@GetMapping("/{id}")
+//	public ResponseEntity<AlunoDtoSave> getAlunoById(@PathVariable Integer id) {
+//		AlunoDtoSave alunoResponse = alunoService.getAlunoById(id);
+//		if(alunoResponse == null) {
+//			return new ResponseEntity<>(null,
+//					HttpStatus.NOT_FOUND);
+//		}
+//		else {
+//			return new ResponseEntity<>(alunoResponse,
+//					HttpStatus.OK);
+//		}		
+//	}
+
+//	@GetMapping("/{id}/dto")
+//	public ResponseEntity<AlunoDtoSave> getAlunoDtoById(@PathVariable Integer id) {
+//		return new ResponseEntity<>(alunoService.getAlunoDtoById(id),
+//				HttpStatus.OK);
+//	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<AlunoDtoSave> getAlunoById(@PathVariable Integer id) {
-		AlunoDtoSave alunoResponse = alunoService.getAlunoById(id);
-		if(alunoResponse == null) {
-			return new ResponseEntity<>(null,
-					HttpStatus.NOT_FOUND);
-		}
-		else {
-			return new ResponseEntity<>(alunoResponse,
-					HttpStatus.OK);
-		}		
+	public ResponseEntity<Aluno> getAlunoById(@PathVariable Integer id) {
+		return new ResponseEntity<>(alunoService.getAlunoById(id),
+				HttpStatus.OK);
 	}
-
+	
+	
 	@GetMapping("/{id}/emprestimos")
 	public ResponseEntity<AlunoResDTO> getAlunoResEmpDto(@PathVariable Integer id) {
 		AlunoResDTO alunoResponse = alunoService.getAlunoResEmpDto(id);

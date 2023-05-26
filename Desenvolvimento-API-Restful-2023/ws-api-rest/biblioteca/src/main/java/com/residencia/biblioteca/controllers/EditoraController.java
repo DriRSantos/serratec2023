@@ -62,6 +62,11 @@ public class EditoraController {
 		return new ResponseEntity<>(editoraService.saveEditora(editora), HttpStatus.CREATED);		
 	}
 	
+	@PostMapping("/dto")
+	public ResponseEntity<EditoraResumidaDTO> saveEditora(@RequestBody EditoraResumidaDTO editoraResDTO) {
+		return new ResponseEntity<>(editoraService.saveEditoraDto(editoraResDTO), HttpStatus.CREATED);		
+	}
+	
 //	@PutMapping("/{id}")
 	@PutMapping
 	public ResponseEntity<Editora> updateEditora(@RequestBody Editora editora, Integer id) {

@@ -135,5 +135,12 @@ public class Aluno implements Serializable {
 
 	public void setEmprestimos(List<Emprestimo> emprestimos) {
 		this.emprestimos = emprestimos;
-	} 
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno [numeroMatriculaAluno=" + numeroMatriculaAluno + ", nome=" + nome + ", dataNascimento="
+				+ dataNascimento + ", cpf=" + cpf + ", logradouro=" + logradouro + ", numeroLogradouro="
+				+ numeroLogradouro + ", complemento=" + complemento + ", bairro=" + bairro + ", cidade=" + cidade + "]";
+	}	
 }

@@ -101,6 +101,12 @@ public class AlunoDtoSave {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	@Override
+	public String toString() {
+		return "AlunoDtoSave [numeroMatriculaAluno=" + numeroMatriculaAluno + ", nome=" + nome + ", dataNascimento="
+				+ dataNascimento + ", cpf=" + cpf + ", logradouro=" + logradouro + ", numeroLogradouro="
+				+ numeroLogradouro + ", complemento=" + complemento + ", bairro=" + bairro + ", cidade=" + cidade + "]";
 	}	
-	
 }
