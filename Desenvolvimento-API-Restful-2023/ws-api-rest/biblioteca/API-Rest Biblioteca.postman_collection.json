@@ -1,0 +1,784 @@
+{
+	"info": {
+		"_postman_id": "3488613d-cb62-40b3-8b87-056d92e1f085",
+		"name": "API-Rest Biblioteca",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20884477"
+	},
+	"item": [
+		{
+			"name": "Alunos",
+			"item": [
+				{
+					"name": "Alunos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/alunos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"alunos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlunoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/alunos/30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"alunos",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlunoDtoById com Emp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/alunos/dto/1  NAO TA USANDO",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"alunos",
+								"dto",
+								"1  NAO TA USANDO"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aluno e Emp By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/alunos/1/emprestimos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"alunos",
+								"1",
+								"emprestimos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aluno Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\t\"nome\": \"Carlos\",\r\n\t\t\"dataNascimento\": \"1970-04-22T00:35:00.000-03:00\",\r\n\t\t\"cpf\": \"9852285632\",\r\n\t\t\"logradouro\": \"Rua Teste Alterado\",\r\n\t\t\"numeroLogradouro\": \"1\",\r\n\t\t\"complemento\": \"Alter\",\r\n\t\t\"bairro\": \"Itaipava\",\r\n\t\t\"cidade\": \"Petrópolis\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/alunos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"alunos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aluno Save DTO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\t\"nome\": \"Clara\",\r\n\t\t\"dataNascimento\": \"1950-04-22T00:35:00.000-03:00\",\r\n\t\t\"cpf\": \"92269511132\",\r\n\t\t\"logradouro\": \"Rua Teste 6\",\r\n\t\t\"numeroLogradouro\": \"56\",\r\n\t\t\"complemento\": \"333\",\r\n\t\t\"bairro\": \"Alto da Serra\",\r\n\t\t\"cidade\": \"Petropolis\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/alunos/dto/criar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"alunos",
+								"dto",
+								"criar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aluno Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"numeroMatriculaAluno\": 6,\r\n        \"nome\": \"Edu\",\r\n        \"dataNascimento\": \"1958-04-22T00:00:00.000-03:00\",\r\n        \"cpf\": \"32584578854\",\r\n        \"logradouro\": \"Rua Pessoa Três\",\r\n        \"numeroLogradouro\": \"23\",\r\n        \"complemento\": \"s/c\",\r\n        \"bairro\": \"Serra\",\r\n        \"cidade\": \"Petrópolis\",\r\n        \"emprestimos\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/alunos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"alunos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aluno Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/alunos/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"alunos",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Editoras",
+			"item": [
+				{
+					"name": "Editoras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/editoras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"editoras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditoraById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/editoras/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"editoras",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditoraDtoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/editoras/dto/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"editoras",
+								"dto",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editora Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/editoras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"editoras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditoraResumidaDto Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Editora Intrínseca\",\r\n    \"cnpj\": \"05660045000106\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/editoras/dto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"editoras",
+								"dto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editora Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigoEditora\": 2,\r\n    \"nome\": \"Vozes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/editoras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"editoras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editora Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/editoras/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"editoras",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Livros",
+			"item": [
+				{
+					"name": "Livros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/livros",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"livros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LivrosById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/livros/35",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"livros",
+								"35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Livro Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeLivro\": \"A morte é um negócio solitário\",\r\n    \"nomeAutor\": \"Ray Bradbury\",\r\n    \"dataLancamento\": \"1985-10-22T00:35:00.000-03:00\",\r\n    \"codigoIsbn\": 97865,\r\n    \"editora\": {\r\n                \"codigoEditora\": 3\r\n                }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/livros",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"livros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Livro Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigoLivro\": 1,\r\n    \"nomeLivro\": \"Admirável Mundo Novo\",\r\n    \"nomeAutor\": \"Aldous Huxley\",\r\n    \"dataLancamento\": \"1932-04-22T00:35:00.000-03:00\",\r\n    \"codigoIsbn\": 952,\r\n    \"editora\": {\r\n                \"codigoEditora\": 3,\r\n                \"nome\": \"Biblioteca Azul\",\r\n                \"imagemNome\": null,\r\n                \"imagemFilename\": null,\r\n                \"imagemUrl\": null\r\n                }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/livros",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"livros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Livro Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Emprestimos",
+			"item": [
+				{
+					"name": "Emprestimos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/emprestimos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"emprestimos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EmprestimoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/emprestimos/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"emprestimos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EmprestimoDtoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/emprestimos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"emprestimos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Emprestimo Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataEmprestimo\": \"2023-02-21T00:35:00.000-03:00\",\r\n    \"dataEntrega\": \"2023-03-21T00:35:00.000-03:00\",\r\n    \"valorEmprestimo\": 12,\r\n    \"aluno\": {\r\n        \"numeroMatriculaAluno\": 1\r\n    },\r\n     \"livro\": {\r\n         \"codigoLivro\": 2\r\n     }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/emprestimos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"emprestimos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Emprestimo Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"\"\r\n    \"dataEmprestimo\": \"2023-04-22T00:35:00.000-03:00\",\r\n    \"dataEntrega\": null,\r\n    \"valorEmprestimo\": 10,\r\n    \"aluno\": {\r\n        \"numeroMatriculaAluno\": 1\r\n    },\r\n     \"livro\": {\r\n         \"codigoLivro\": 1\r\n     }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Emprestimo Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UsuariosById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/usuarios/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"usuarios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_nome\": \"Pessoa Silva\",\r\n    \"user_email\" : \"ps@email.com\",\r\n    \"user_password\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 1,\r\n    \"user_nome\": \"Adriana Neves\",\r\n    \"user_email\" : \"dri@email.com\",\r\n    \"user_password\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblioteca/usuarios/234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"usuarios",
+								"234"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UploadArquivos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nome_param",
+							"type": "file",
+							"src": "/D:/Área de Trabalho/teste.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
