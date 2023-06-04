@@ -25,7 +25,7 @@ window.onload = async function(){
     pessoasContainer.appendChild(img);
     pessoasContainer.appendChild(nome);
     pessoasContainer.appendChild(date);
-  
+
     // const btn = document.createElement("button");
     // btn.innerHTML = "Hello";
     // document.body.appendChild(btn);
