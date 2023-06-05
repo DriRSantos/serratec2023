@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 100%;
+  width: 100%;
+  color: white;
+  background: radial-gradient(circle at 10% 20%, rgb(164, 38, 199) 0.1%, rgb(65, 220, 255) 90.1%);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  height: 100%;
+  width: 100%;
+  gap: 100px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(201, 76, 76, 0.3);
+}
+
+.header-right{
+  display: flex;
+  gap: 20px;
+}
+
+.header-right-item{
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: none;
+  background: rgb(111, 25, 187);
+}
+
+h1, h2 {
+  font-family: Helvetica, sans-serif, Arial;
+  color: white;
+}
+
+h3 {
+  color: blue;
+  padding: 10px;
+}
+
+button {
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+img {
+  max-width: 100%;
+  max-height: auto;
+  border-radius: 9px;
+}
+
+.main-content-personal{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  gap: 80px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(201, 76, 76, 0.3);
+  margin-left: 30px;
+}
+
+.img-personal{
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0px;
+  padding: 0px;
+}
+
+p {
+  padding: 5px;
+}
+
+.main-content-experience, .main-content-academic{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 22px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(201, 76, 76, 0.3);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
