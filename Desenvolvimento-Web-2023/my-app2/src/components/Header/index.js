@@ -1,4 +1,4 @@
-import myLogo from '../assets/images/logo.png';
+import myLogo from '../../assets/images/logo.png';
 
 export function Header(){
     return (

@@ -12,7 +12,7 @@ function App2() {  // componente funcional
   function handleIncrement(){
     var newCounter = counter + 1;
     setCounter(newCounter)
-    console.log(counter)  // cuidado quando chamar este valor, pois não será o esperado
+    console.log(newCounter)  // cuidado se chamar este valor, pois não será o esperado
   }
   
   return (

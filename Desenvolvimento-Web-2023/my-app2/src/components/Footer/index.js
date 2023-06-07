@@ -1,5 +1,4 @@
-import myFooter from '../assets/images/footer.png';
-
+import myFooter from '../../assets/images/footer.png';
 
 export function Footer(){
   return (
