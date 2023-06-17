@@ -13,10 +13,31 @@ async componentDidMount(){
   const dogsJson = await newDogs.json(); // array de golden
   const dogsArray = dogsJson.message; // extrai o Array da resposta da requisição e salva na variável
   this.setState({ dogs: dogsArray }); // seta as props do golden no array
+
+  // async function makeRequest() { // tratamento de erro com http
+  //   try {
+  //     const response = await fetch('https://randomuser.me/api/');
+  
+  //     console.log('status code: ', response.status); // 👉️ 200
+  
+  //     if (!response.ok) {
+  //       console.log(response);
+  //       throw new Error(`Error! status: ${response.status}`);
+  //     }
+  
+  //     const result = await response.json();
+  //     return result;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+  
+  // makeRequest();
+
 }
 
   render(){
-    console.log(this.state.dogs) // verificar no console
+    console.log(this.state.dogs) // verifica no console
 
     return (
       <div className="container">

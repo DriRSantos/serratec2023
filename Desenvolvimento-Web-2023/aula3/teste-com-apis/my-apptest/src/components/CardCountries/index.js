@@ -1,14 +1,13 @@
 import React from 'react';
 import '../Card/style.css';
 
-export class CardMarvel extends React.Component {
-  render() {
-    return (
+export function CardCountries({flags, common}){
+     return (
         <div>
             <div className="cardContainer">
-                <img src={this.props.picture} alt="dog" />
+                <img src={flags.svg} alt="countries" />
+                <h3>{common}</h3>
             </div>
         </div>
     )
-}
 }
