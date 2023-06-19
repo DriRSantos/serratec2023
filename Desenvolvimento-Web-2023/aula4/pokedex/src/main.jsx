@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './common/style/global.css';
 import { AllRoutes } from './routes/AllRoutes';
+import { GlobalStyle } from './common/style/global';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <AllRoutes />
+    <AllRoutes />
+    <GlobalStyle />
   </React.StrictMode>
 );

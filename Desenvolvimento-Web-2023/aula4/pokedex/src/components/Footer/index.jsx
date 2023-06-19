@@ -8,23 +8,21 @@ import {
   ProfileContainer,
 } from './style';
 
-export function Header() {
+export function Footer() {
   const location = useLocation();
 
   console.log(location)
 
-  // criar button darkmode
-
   return (
     <>
+      <Outlet />
       <Container>
         <LeftContainer>
           <LogoContainer>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1200px-Pok%C3%A9_Ball_icon.svg.png" alt="Pokeball" />
             <span>My <span>Pokedex</span></span>
           </LogoContainer>
           <NavList>
-            <Link to={'/'}>
+            {/* <Link to={'/'}>
               <NavItem isActive={location.pathname === "/"}>Home</NavItem>
             </Link>
             <Link to={'/dashboard'}>
@@ -35,7 +33,7 @@ export function Header() {
             </Link>
             <Link to={'/login'}>
               <NavItem isActive={location.pathname === "/login"}>Login</NavItem>
-            </Link>
+            </Link> */}
           </NavList>
         </LeftContainer>
         <ProfileContainer>
@@ -43,7 +41,6 @@ export function Header() {
           <img src="https://avatars.githubusercontent.com/u/105232781?v=4" alt="DriRSantosNeves" />
         </ProfileContainer>
       </Container>
-      <Outlet />
     </>
   )
 }

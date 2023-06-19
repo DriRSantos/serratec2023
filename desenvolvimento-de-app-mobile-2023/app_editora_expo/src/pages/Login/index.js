@@ -13,61 +13,78 @@ export function Login() {  // igual ao React exporta função
   const [senha, setSenha] = useState('');
 
   const handleLogin = () => {
-    alert('Foi pressionado!!');
+    alert('Seja bem vindo à livraDri !!');
     console.log(`Email: ${email} | Senha: ${senha}`);
   }
 
   return (  // é importante ter um componente ou mais, sendo container de outros componentes
+
     <View style={styles.container}>
-      <Text style={styles.txt}>Hello Word!!!! Dri</Text>
+      <Text style={styles.h1}>Bem vindo!</Text>
+      <Text style={styles.txt}>Preencha os dados para login</Text>
       <TextInput
         style={styles.input}
         value={email}
         placeholder="E-mail"
+        placeholderTextColor="white"
         onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
         value={senha}
         placeholder="Senha"
+        placeholderTextColor="white"
         onChangeText={setSenha}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
         <Text style={styles.txtButton}>Login</Text>
       </TouchableOpacity>
     </View>
-  ); {/* poderia passar onPress={() => handleLogin()} */ }
+  ); {/* poderia passar onPress={handleLogin} */ }
 }
 
 // tem uma mistura de responsabilidades (se quiser pode criar arquivo externo css externo, mas nem todos fazem)
 const styles = StyleSheet.create({ // estilização css no ReactiveNative usa o StyleSheet
   container: {                     // existem outras formas de estilizar  
     flex: 1,
-    backgroundColor: '#FF9000',
+    backgroundColor: '#102E4A',
     alignItems: 'center', // nome das propriedades é camelCase
     justifyContent: 'center',
+  },
+
+  h1: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#55C1FF',
   },
 
   txt: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 30,
+    marginBottom: 10,
+    color: '#55C1FF',
   },
 
   input: {
+    width: 250,
     height: 40,
-    margin: 12,
+    margin: 5,
     borderWidth: 1,
+    borderColor: '#55C1FF',
     padding: 10,
+    borderRadius: 10,
+
   },
 
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#55C1FF',
     padding: 10,
+    marginTop: 10,
+    width: 250,
   },
 
   txtButton: {
-    color: '#FF4567',
+    color: 'white',
   },
 });
