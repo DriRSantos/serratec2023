@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { Home } from '../Home';
 
-export function Login() {  // igual ao React exporta função
+export function Login({ navigation }) {  // igual ao React exporta função
   // const Login = () => { // também pode usar arrow function mas LEMBRE de export default Login lá embaixo
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -15,6 +16,7 @@ export function Login() {  // igual ao React exporta função
   const handleLogin = () => {
     alert('Seja bem vindo à livraDri !!');
     console.log(`Email: ${email} | Senha: ${senha}`);
+    navigation.navigate('Home');
   }
 
   return (  // é importante ter um componente ou mais, sendo container de outros componentes
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({ // estilização css no ReactiveNative usa o 
   },
 
   input: {
-    width: 250,
+    width: 320,
     height: 40,
     margin: 5,
     borderWidth: 1,
@@ -81,7 +83,8 @@ const styles = StyleSheet.create({ // estilização css no ReactiveNative usa o 
     backgroundColor: '#55C1FF',
     padding: 10,
     marginTop: 10,
-    width: 250,
+    width: 320,
+    borderRadius: 9,
   },
 
   txtButton: {

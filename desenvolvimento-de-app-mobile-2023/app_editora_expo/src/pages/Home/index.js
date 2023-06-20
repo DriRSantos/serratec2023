@@ -2,14 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  SectionList,
-  SafeAreaView,
-  Image,
   FlatList,
-  Button,
+  Image,
+  SafeAreaView,
+  SectionList,
+  Text,
+  View
 } from 'react-native';
+import { Card } from 'react-native-elements';
 
 const ListItem = ({ item, imageStyle }) => {
   return (
@@ -26,7 +26,7 @@ const ListItem = ({ item, imageStyle }) => {
   );
 };
 
-export function Home() {
+export function Home({ navigation }) {
 
   const renderHorizontalList = (data, sectionTitle) => (
     <FlatList
@@ -35,10 +35,13 @@ export function Home() {
       renderItem={({ item }) => {
         if (sectionTitle === 'Recentes') {
           return (
-            <ListItem
-              item={item}
-              imageStyle={styles.itemPhotoBook}
-            />
+            <Card containerStyle={styles.card}>
+              <Card.Image source={{ uri: item.uri }} style={styles.cardImage} onPress={() => navigation.navigate('Livros')}>
+              </Card.Image>
+              <Card.FeaturedTitle style={styles.cardTitle}>{item.text}</Card.FeaturedTitle>
+              <Card.FeaturedSubtitle style={styles.cardSubtitle}>{item.description}</Card.FeaturedSubtitle>
+              {/* <Text style={styles.cardDescription}>{item.description}</Text> */}
+            </Card>
           );
         } else {
           return <ListItem item={item} />;
@@ -53,9 +56,9 @@ export function Home() {
   // <Button title="Login" onPress={() => navigation.navigate('Login')}></Button> 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
-      <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <SectionList
           contentContainerStyle={{ paddingHorizontal: 10 }}
           stickySectionHeadersEnabled={false}
@@ -94,8 +97,8 @@ export function Home() {
             }
           }}
         />
-      </SafeAreaView>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -139,27 +142,32 @@ const SECTIONS = [
       {
         key: '1',
         text: 'Livro 1',
+        description: 'Teste descriçao',
         uri: 'https://picsum.photos/id/1011/200',
       },
       {
         key: '2',
         text: 'Livro 2',
+        description: 'Teste descriçao',
         uri: 'https://picsum.photos/id/1012/200',
       },
 
       {
         key: '3',
         text: 'Livro 3',
+        description: 'Teste descriçao',
         uri: 'https://picsum.photos/id/1013/200',
       },
       {
         key: '4',
         text: 'Livro 4',
+        description: 'Teste descriçao',
         uri: 'https://picsum.photos/id/1015/200',
       },
       {
         key: '5',
         text: 'Livro 5',
+        description: 'Teste descriçao',
         uri: 'https://picsum.photos/id/1016/200',
       },
     ],
@@ -182,17 +190,7 @@ const SECTIONS = [
       //   key: '3',
       //   text: 'Item text 3',
       //   uri: 'https://picsum.photos/id/1027/200',
-      // },
-      // {
-      //   key: '4',
-      //   text: 'Item text 4',
-      //   uri: 'https://picsum.photos/id/1035/200',
-      // },
-      // {
-      //   key: '5',
-      //   text: 'Item text 5',
-      //   uri: 'https://picsum.photos/id/1038/200',
-      // },
+      // },    
     ],
   },
 ];
@@ -201,7 +199,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#102E4A',
-    paddingTop: 30,
   },
   sectionHeader: {
     fontWeight: '800',
@@ -226,7 +223,7 @@ const styles = StyleSheet.create({
     color: '#55C1FF',
   },
   highlightContainer: {
-    padding: 10,
+    padding: 8,
   },
   highlightScrollView: {
     alignItems: 'center',
@@ -237,16 +234,32 @@ const styles = StyleSheet.create({
   },
   highlightItemPhoto: {
     width: 370,
-    height: 200,
+    height: 190,
     borderRadius: 20,
   },
   highlightItemText: {
     color: 'rgba(255, 255, 255, 0.5)',
-    marginTop: 5,
   },
-  itemPhotoBook: {
-    width: 130,
-    height: 200,
+  card: {
+    borderColor: 'gray',
     borderRadius: 5,
-  }
+    overflow: 'hidden',
+    width: 170,
+    height: 250,
+    marginBottom: 5,
+  },
+  cardImage: {
+    width: 170,
+    height: 180,
+    borderRadius: 5,
+  },
+  cardTitle: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  cardSubtitle: {
+    color: 'black',
+    fontSize: 12,
+  },
 });
