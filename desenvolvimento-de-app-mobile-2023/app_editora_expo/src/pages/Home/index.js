@@ -6,52 +6,56 @@ import {
   Image,
   SafeAreaView,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
-import { Card } from 'react-native-elements';
 import { AxiosInstance } from '../../api/AxiosInstance';
 import { DataContext } from '../../context/DataContext';
 import { useContext, useState, useEffect } from 'react';
 
-const ItemEditoras = ({ img }) => (
-  <Image style={styles.img} source={{ uri: `data:image/png;base64, ${img}` }} />
+const PublisherItem = ({ img, onPress, publisher }) => (
+  <TouchableOpacity onPress={() => onPress(publisher)}>
+    <Image style={styles.img} source={{ uri: `data:image/png;base64, ${img}` }} />
+  </TouchableOpacity>
 );
 
-const ItemLivros = ({ img, text, text2 }) => (
-  <View>
-    <Image style={styles.imgLivros} source={{ uri: `data:image/png;base64, ${img}` }} />
-    <Text style={styles.text1}>{text}</Text>
-    <Text style={styles.text2}>{text2}</Text>
-  </View>
+const BookItem = ({ img, text, text2, onPress }) => (
+  <TouchableOpacity onPress={() => onPress({ img, text, text2 })}>
+    <View>
+      <Image style={styles.imgLivros} source={{ uri: `data:image/png;base64, ${img}` }} />
+      <Text style={styles.text1}>{text}</Text>
+      <Text style={styles.text2}>{text2}</Text>
+    </View>
+  </TouchableOpacity>
 );
 
 export function Home({ navigation }) {
   const { userData } = useContext(DataContext);
-  const [dadosEditora, setDadosEditora] = useState([]);
-  const [dadosLivros, setDadosLivros] = useState([]);
-  const [dadosAutores, setDadosAutores] = useState([]);
+  const [publisherData, setPublisherData] = useState([]);
+  const [bookData, setBookData] = useState([]);
+  const [authorData, setAuthorData] = useState([]);
   const [combinedData, setCombinedData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseEditoras = await AxiosInstance.get('/editoras', {
+        const publisherResponse = await AxiosInstance.get('/editoras', {
           headers: { Authorization: `Bearer ${userData?.token}` },
         });
-        console.log('getTodasEditoras:' + JSON.stringify(responseEditoras.data));
-        setDadosEditora(responseEditoras.data);
+        // console.log('getTodasEditoras:' + JSON.stringify(publisherResponse.data));
+        setPublisherData(publisherResponse.data);
 
-        const responseLivros = await AxiosInstance.get('/livros', {
+        const booksResponse = await AxiosInstance.get('/livros', {
           headers: { Authorization: `Bearer ${userData?.token}` },
         });
-        console.log('getTodosLivros:' + JSON.stringify(responseLivros.data));
-        setDadosLivros(responseLivros.data);
+        // console.log('getTodosLivros:' + JSON.stringify(booksResponse.data));
+        setBookData(booksResponse.data);
 
-        const responseAutores = await AxiosInstance.get('/autores', {
+        const authorResponse = await AxiosInstance.get('/autores', {
           headers: { Authorization: `Bearer ${userData?.token}` },
         });
-        console.log('getTodosAutores:' + JSON.stringify(responseAutores.data));
-        setDadosAutores(responseAutores.data);
+        // console.log('getTodosAutores:' + JSON.stringify(authorResponse.data));
+        setAuthorData(authorResponse.data);
       }
       catch (error) {
         console.log('Ocorreu um erro ao recuperar os dados: ' + error);
@@ -62,18 +66,19 @@ export function Home({ navigation }) {
   }, [userData?.token]);
 
   useEffect(() => {
-    if (dadosLivros.length > 0 && dadosAutores.length > 0) {
-      const combined = dadosLivros.map((livro, index) => ({
+    if (bookData.length > 0 && authorData.length > 0) {
+      const combined = bookData.map((livro, index) => ({
         ...livro,
-        nomeAutor: dadosAutores[index].nomeAutor,
+        nomeAutor: authorData[index].nomeAutor,
       }));
       setCombinedData(combined);
     }
-  }, [dadosLivros, dadosAutores]);
+  }, [bookData, authorData]);
 
-  // console.log(dadosEditora)
-  // console.log(dadosLivros)
-  // console.log(dadosAutores)
+
+  // console.log(publisherData)
+  // console.log(bookData)
+  // console.log(authorData)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -81,8 +86,14 @@ export function Home({ navigation }) {
       <View styles={styles.publisherContainer}>
         <Text style={styles.titleSection}>Editoras</Text>
         <FlatList
-          data={dadosEditora}
-          renderItem={({ item }) => <ItemEditoras img={item.img} text="Editoras" />}
+          data={publisherData}
+          renderItem={({ item }) => (
+            <PublisherItem
+              img={item.img}
+              onPress={(publisher) => navigation.navigate('HomePublishers', { publisher, bookData, combinedData })}
+              publisher={item}
+            />
+          )}
           keyExtractor={(item) => item.codigoEditora.toString()}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -92,20 +103,26 @@ export function Home({ navigation }) {
         <Text style={styles.titleSection}>Recentes</Text>
         <FlatList
           data={combinedData}
-          renderItem={({ item }) => <ItemLivros img={item.img} text={item.nomeLivro} text2={item.nomeAutor} onPress={() => navigation.navigate('Livros')} />}
+          renderItem={({ item }) => (
+            <BookItem
+              img={item.img}
+              text={item.nomeLivro}
+              text2={item.nomeAutor}
+              onPress={(data) => navigation.navigate('Livros')}
+            />
+          )}
           keyExtractor={(item) => item.codigoLivro.toString()}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-
         />
       </View>
       <View style={styles.dataContainer}>
         <Text style={styles.titleSection}>Destaque</Text>
         <FlatList
-          data={dadosEditora.slice(0, 1)}
-          renderItem={({ item }) => <ItemEditoras img={item.img} text={item.text} />}
+          data={publisherData.slice(0, 1)}
+          renderItem={({ item }) => <PublisherItem img={item.img} text={item.text} />}
           keyExtractor={(index) => index.toString()}
-          horizontal
+          horizontal={true}
         />
       </View>
     </SafeAreaView>

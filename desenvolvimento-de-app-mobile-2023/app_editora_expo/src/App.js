@@ -4,6 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Cart } from './pages/Cart';
 import { Favorites } from './pages/Favorites';
 import { Home } from './pages/Home';
@@ -35,7 +38,7 @@ function TabsNavigation() {
           ),
         }} />
       <Tab.Screen
-        name="Busca"
+        name="BuscaEditoras"
         component={Search}
         options={{
           tabBarLabel: 'Busca',
@@ -47,7 +50,7 @@ function TabsNavigation() {
         name="Favoritos"
         component={Favorites}
         options={{
-          tabBarLabel: 'Favoritos',
+          title: 'Favoritos',
           tabBarIcon: (tabInfo) => (
             <AntDesign name="heart" size={24} color="#0958d9" />
           ),
@@ -64,29 +67,29 @@ function TabsNavigation() {
     </Tab.Navigator>
   )
 }
-
 export default function App() {  // igual ao React exporta função
-  // const App = () => { // também pode usar arrow function
 
   return (  // é importante ter um componente ou mais, sendo container de outros componentes
     <DataProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={TabsNavigation} options={{
+          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+          <Stack.Screen name="Home" component={DrawerNavigation} options={{
+            headerShown: false,
             headerStyle: {
               backgroundColor: '#55C1FF',
             },
             headerTintColor: '#FFF',
 
           }} />
+
           <Stack.Screen name="Livros" component={Books} options={{
             headerStyle: {
               backgroundColor: '#55C1FF',
             },
             headerTintColor: '#FFF',
           }} />
-          <Stack.Screen name="Busca" component={Search} options={{
+          <Stack.Screen name="HomePublishers" component={HomePublishers} options={{
             headerStyle: {
               backgroundColor: '#55C1FF',
             },
@@ -110,4 +113,116 @@ export default function App() {  // igual ao React exporta função
     </DataProvider>
   );
 }
+
+const Logout = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    async function performLogout() {
+      await AsyncStorage.clear();
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Login' }],
+      });
+    }
+    performLogout();
+  }, [navigation]);
+
+  return null;
+}
+
+function DrawerNavigation() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Livraria" component={TabsNavigation} options={{
+        headerStyle: {
+          backgroundColor: '#55C1FF',
+        },
+        headerTintColor: '#FFF',
+      }} />
+      <Drawer.Screen name="Livros" component={Books} options={{
+        headerStyle: {
+          backgroundColor: '#55C1FF',
+        },
+        headerTintColor: '#FFF',
+      }} />
+      <Drawer.Screen name="Favoritos" component={Favorites} options={{
+        headerShown: false,
+        headerStyle: {
+          backgroundColor: '#55C1FF',
+        },
+        headerTintColor: '#FFF',
+      }} />
+      <Drawer.Screen name="Logout" component={Logout} options={{
+        headerShown: false,
+        headerStyle: {
+          backgroundColor: '#55C1FF',
+        },
+        headerTintColor: '#FFF',
+      }} />
+    </Drawer.Navigator>
+  );
+}
+
+// sem drawer
+// export default function App() {  // igual ao React exporta função
+//   // const App = () => { // também pode usar arrow function
+
+//   return (  // é importante ter um componente ou mais, sendo container de outros componentes
+//     <DataProvider>
+//       <NavigationContainer>
+//         <Stack.Navigator>
+//           <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+//           <Stack.Screen name="Home" component={TabsNavigation} options={{
+//             headerStyle: {
+//               backgroundColor: '#55C1FF',
+//             },
+//             headerTintColor: '#FFF',
+
+//           }} />
+
+//           <Stack.Screen name="Livros" component={Books} options={{
+//             headerStyle: {
+//               backgroundColor: '#55C1FF',
+//             },
+//             headerTintColor: '#FFF',
+//           }} />
+//           <Stack.Screen name="HomePublishers" component={HomePublishers} options={{
+//             headerStyle: {
+//               backgroundColor: '#55C1FF',
+//             },
+//             headerTintColor: '#FFF',
+//           }} />
+
+//           <Stack.Screen name="Favoritos" component={Favorites} options={{
+//             headerStyle: {
+//               backgroundColor: '#55C1FF',
+//             },
+//             headerTintColor: '#FFF',
+//           }} />
+//           <Stack.Screen name="Carrinho" component={Cart} options={{
+//             headerStyle: {
+//               backgroundColor: '#55C1FF',
+//             },
+//             headerTintColor: '#FFF',
+//           }} />
+//         </Stack.Navigator>
+//       </NavigationContainer >
+//     </DataProvider>
+//   );
+// }
 // initialRouteName="Login" screenOptions={{ headerShown: false }}
+
+// function DrawerNavigation() {
+//   return (
+//     <NavigationContainer>
+//       <Drawer.Navigator>
+//         <Drawer.Screen name="Login" component={Login} options={{ headerShown: false }} />
+//         <Drawer.Screen name="Home" component={StackNavigation} />
+//         <Drawer.Screen name="Livros" component={Books} />
+//         <Drawer.Screen name="Editoras" component={HomePublishers} />
+//         <Drawer.Screen name="Favoritos" component={Favorites} options={{ headerShown: false }} />
+//       </Drawer.Navigator>
+//     </NavigationContainer>
+//   );
+// }

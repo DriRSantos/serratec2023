@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { Home } from '../Home';
 import { AxiosInstance } from '../../api/AxiosInstance';
 import { DataContext } from '../../context/DataContext';
 
