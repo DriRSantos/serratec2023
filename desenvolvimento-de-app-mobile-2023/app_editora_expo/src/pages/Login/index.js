@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,20 +7,43 @@ import {
   View
 } from 'react-native';
 import { Home } from '../Home';
+import { AxiosInstance } from '../../api/AxiosInstance';
+import { DataContext } from '../../context/DataContext';
 
 export function Login({ navigation }) {  // igual ao React exporta função
   // const Login = () => { // também pode usar arrow function mas LEMBRE de export default Login lá embaixo
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const { storeUserData } = useContext(DataContext);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     alert('Seja bem vindo à livraDri !!');
     console.log(`Email: ${email} | Senha: ${senha}`);
-    navigation.navigate('Home');
+
+    try {
+      const response = await AxiosInstance.post('/auth/signin', {
+        username: email,
+        password: senha
+      });
+
+      if (response.status === 200) {
+        // accessToken , atenção à maneira de guardar o token, pois a chave pode estar escrita como access-token
+        // aí não funciona o jwtToken.accessToken
+        var jwtToken = response.data;
+        storeUserData(jwtToken["accessToken"]);
+
+        navigation.navigate('Home'); // pega do name, que é como o id
+      }
+      else {
+        console.log('Erro ao realizar login!');
+        alert('Erro no login!');
+      }
+    } catch (error) {
+      console.log('Erro ao realizar login: ' + error);
+    }
   }
 
   return (  // é importante ter um componente ou mais, sendo container de outros componentes
-
     <View style={styles.container}>
       <Text style={styles.h1}>Bem vindo!</Text>
       <Text style={styles.txt}>Preencha os dados para login</Text>
@@ -75,7 +98,6 @@ const styles = StyleSheet.create({ // estilização css no ReactiveNative usa o 
     borderColor: '#55C1FF',
     padding: 10,
     borderRadius: 10,
-
   },
 
   button: {

@@ -5,261 +5,164 @@ import {
   FlatList,
   Image,
   SafeAreaView,
-  SectionList,
   Text,
   View
 } from 'react-native';
 import { Card } from 'react-native-elements';
+import { AxiosInstance } from '../../api/AxiosInstance';
+import { DataContext } from '../../context/DataContext';
+import { useContext, useState, useEffect } from 'react';
 
-const ListItem = ({ item, imageStyle }) => {
-  return (
-    <View style={styles.item}>
-      <Image
-        source={{
-          uri: item.uri,
-        }}
-        style={[styles.itemPhoto, imageStyle]}
-        resizeMode="cover"
-      />
-      <Text style={styles.itemText}>{item.text}</Text>
-    </View>
-  );
-};
+const ItemEditoras = ({ img }) => (
+  <Image style={styles.img} source={{ uri: `data:image/png;base64, ${img}` }} />
+);
+
+const ItemLivros = ({ img, text, text2 }) => (
+  <View>
+    <Image style={styles.imgLivros} source={{ uri: `data:image/png;base64, ${img}` }} />
+    <Text style={styles.text1}>{text}</Text>
+    <Text style={styles.text2}>{text2}</Text>
+  </View>
+);
 
 export function Home({ navigation }) {
+  const { userData } = useContext(DataContext);
+  const [dadosEditora, setDadosEditora] = useState([]);
+  const [dadosLivros, setDadosLivros] = useState([]);
+  const [dadosAutores, setDadosAutores] = useState([]);
+  const [combinedData, setCombinedData] = useState([]);
 
-  const renderHorizontalList = (data, sectionTitle) => (
-    <FlatList
-      horizontal
-      data={data}
-      renderItem={({ item }) => {
-        if (sectionTitle === 'Recentes') {
-          return (
-            <Card containerStyle={styles.card}>
-              <Card.Image source={{ uri: item.uri }} style={styles.cardImage} onPress={() => navigation.navigate('Livros')}>
-              </Card.Image>
-              <Card.FeaturedTitle style={styles.cardTitle}>{item.text}</Card.FeaturedTitle>
-              <Card.FeaturedSubtitle style={styles.cardSubtitle}>{item.description}</Card.FeaturedSubtitle>
-              {/* <Text style={styles.cardDescription}>{item.description}</Text> */}
-            </Card>
-          );
-        } else {
-          return <ListItem item={item} />;
-        }
-      }}
-      keyExtractor={(item) => item.key}
-      showsHorizontalScrollIndicator={false}
-    />
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responseEditoras = await AxiosInstance.get('/editoras', {
+          headers: { Authorization: `Bearer ${userData?.token}` },
+        });
+        console.log('getTodasEditoras:' + JSON.stringify(responseEditoras.data));
+        setDadosEditora(responseEditoras.data);
 
-  // <Button title="Editoras" onPress={() => navigation.navigate('HomeEditoras')}></Button>
-  // <Button title="Login" onPress={() => navigation.navigate('Login')}></Button> 
+        const responseLivros = await AxiosInstance.get('/livros', {
+          headers: { Authorization: `Bearer ${userData?.token}` },
+        });
+        console.log('getTodosLivros:' + JSON.stringify(responseLivros.data));
+        setDadosLivros(responseLivros.data);
+
+        const responseAutores = await AxiosInstance.get('/autores', {
+          headers: { Authorization: `Bearer ${userData?.token}` },
+        });
+        console.log('getTodosAutores:' + JSON.stringify(responseAutores.data));
+        setDadosAutores(responseAutores.data);
+      }
+      catch (error) {
+        console.log('Ocorreu um erro ao recuperar os dados: ' + error);
+      }
+    };
+
+    fetchData();
+  }, [userData?.token]);
+
+  useEffect(() => {
+    if (dadosLivros.length > 0 && dadosAutores.length > 0) {
+      const combined = dadosLivros.map((livro, index) => ({
+        ...livro,
+        nomeAutor: dadosAutores[index].nomeAutor,
+      }));
+      setCombinedData(combined);
+    }
+  }, [dadosLivros, dadosAutores]);
+
+  // console.log(dadosEditora)
+  // console.log(dadosLivros)
+  // console.log(dadosAutores)
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
-      <View style={{ flex: 1 }}>
-        <SectionList
-          contentContainerStyle={{ paddingHorizontal: 10 }}
-          stickySectionHeadersEnabled={false}
-          sections={SECTIONS}
-          renderSectionHeader={({ section }) => {
-            if (section.title === 'Editoras' || section.title === 'Recentes') {
-              return (
-                <>
-                  <Text style={styles.sectionHeader}>{section.title}</Text>
-                  {renderHorizontalList(section.data, section.title)}
-                </>
-              );
-            } else if (section.title === 'Destaque') {
-              return (
-                <>
-                  <Text style={styles.sectionHeader}>{section.title}</Text>
-                  <View style={styles.highlightContainer}>
-                    <View style={styles.highlightItem}>
-                      <Image
-                        source={{ uri: section.data[0].uri }}
-                        style={styles.highlightItemPhoto}
-                        resizeMode="cover"
-                      />
-                      <Text style={styles.highlightItemText}>
-                        {section.data[0].text}
-                      </Text>
-                    </View>
-                  </View>
-                </>
-              );
-            }
-          }}
-          renderItem={({ section }) => {
-            if (section.horizontal) {
-              return null;
-            }
-          }}
+      <View styles={styles.publisherContainer}>
+        <Text style={styles.titleSection}>Editoras</Text>
+        <FlatList
+          data={dadosEditora}
+          renderItem={({ item }) => <ItemEditoras img={item.img} text="Editoras" />}
+          keyExtractor={(item) => item.codigoEditora.toString()}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+      <View styles={styles.booksContainer}>
+        <Text style={styles.titleSection}>Recentes</Text>
+        <FlatList
+          data={combinedData}
+          renderItem={({ item }) => <ItemLivros img={item.img} text={item.nomeLivro} text2={item.nomeAutor} onPress={() => navigation.navigate('Livros')} />}
+          keyExtractor={(item) => item.codigoLivro.toString()}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+
+        />
+      </View>
+      <View style={styles.dataContainer}>
+        <Text style={styles.titleSection}>Destaque</Text>
+        <FlatList
+          data={dadosEditora.slice(0, 1)}
+          renderItem={({ item }) => <ItemEditoras img={item.img} text={item.text} />}
+          keyExtractor={(index) => index.toString()}
+          horizontal
         />
       </View>
     </SafeAreaView>
   );
-};
-
-const SECTIONS = [
-  {
-    title: 'Editoras',
-    horizontal: true,
-    data: [
-      {
-        key: '1',
-        text: 'Editora 1',
-        uri: 'https://picsum.photos/id/1/200',
-      },
-      {
-        key: '2',
-        text: 'Editora 2',
-        uri: 'https://picsum.photos/id/10/200',
-      },
-
-      {
-        key: '3',
-        text: 'Editora 3',
-        uri: 'https://picsum.photos/id/1002/200',
-      },
-      {
-        key: '4',
-        text: 'Editora 4',
-        uri: 'https://picsum.photos/id/1006/200',
-      },
-      {
-        key: '5',
-        text: 'Editora 5',
-        uri: 'https://picsum.photos/id/1008/200',
-      },
-    ],
-  },
-  {
-    title: 'Recentes',
-    horizontal: true,
-    data: [
-      {
-        key: '1',
-        text: 'Livro 1',
-        description: 'Teste descriçao',
-        uri: 'https://picsum.photos/id/1011/200',
-      },
-      {
-        key: '2',
-        text: 'Livro 2',
-        description: 'Teste descriçao',
-        uri: 'https://picsum.photos/id/1012/200',
-      },
-
-      {
-        key: '3',
-        text: 'Livro 3',
-        description: 'Teste descriçao',
-        uri: 'https://picsum.photos/id/1013/200',
-      },
-      {
-        key: '4',
-        text: 'Livro 4',
-        description: 'Teste descriçao',
-        uri: 'https://picsum.photos/id/1015/200',
-      },
-      {
-        key: '5',
-        text: 'Livro 5',
-        description: 'Teste descriçao',
-        uri: 'https://picsum.photos/id/1016/200',
-      },
-    ],
-  },
-  {
-    title: 'Destaque',
-    data: [
-      {
-        key: '1',
-        text: 'Item text 1',
-        uri: 'https://picsum.photos/id/1020/200',
-      },
-      // {
-      //   key: '2',
-      //   text: 'Item text 2',
-      //   uri: 'https://picsum.photos/id/1024/200',
-      // },
-
-      // {
-      //   key: '3',
-      //   text: 'Item text 3',
-      //   uri: 'https://picsum.photos/id/1027/200',
-      // },    
-    ],
-  },
-];
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+    padding: 5,
     backgroundColor: '#102E4A',
   },
-  sectionHeader: {
-    fontWeight: '800',
-    fontSize: 18,
+  publisherContainer: {
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 5,
+  },
+  booksContainer: {
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 3,
+  },
+  dataContainer: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  titleSection: {
+    fontSize: 20,
+    fontWeight: 'bold',
     color: '#55C1FF',
+    marginTop: 5,
   },
-  item: {
-    margin: 10,
-  },
-  itemPhoto: {
+  img: {
     width: 200,
     height: 200,
     borderRadius: 20,
   },
-  itemText: {
-    color: 'rgba(255, 255, 255, 0.5)',
-    marginTop: 5,
+  imgLivros: {
+    width: 160,
+    height: 200,
+    borderRadius: 6,
   },
-  h1: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#55C1FF',
-  },
-  highlightContainer: {
-    padding: 8,
-  },
-  highlightScrollView: {
-    alignItems: 'center',
-  },
-  highlightItem: {
-    alignItems: 'center',
-    marginHorizontal: 10,
-  },
-  highlightItemPhoto: {
-    width: 370,
-    height: 190,
+  largeImg: {
+    width: 300,
+    height: 200,
     borderRadius: 20,
   },
-  highlightItemText: {
-    color: 'rgba(255, 255, 255, 0.5)',
-  },
-  card: {
-    borderColor: 'gray',
-    borderRadius: 5,
-    overflow: 'hidden',
-    width: 170,
-    height: 250,
-    marginBottom: 5,
-  },
-  cardImage: {
-    width: 170,
-    height: 180,
-    borderRadius: 5,
-  },
-  cardTitle: {
-    color: 'black',
+  text1: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'white',
   },
-  cardSubtitle: {
-    color: 'black',
-    fontSize: 12,
+  text2: {
+    fontSize: 14,
+    marginBottom: 5,
+    padding: 2,
+    color: 'white',
   },
 });
