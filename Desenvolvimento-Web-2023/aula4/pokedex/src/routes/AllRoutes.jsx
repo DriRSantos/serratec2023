@@ -14,7 +14,6 @@ export function AllRoutes() {
                         <Route Component={Home} path="/" />
                         <Route Component={Login} path="/login" />
                         <Route Component={NotFound} path="*" />
-
                     </Route>
                 </Route>
             </Routes>

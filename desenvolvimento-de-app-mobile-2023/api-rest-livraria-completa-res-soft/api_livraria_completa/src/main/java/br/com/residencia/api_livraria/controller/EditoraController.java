@@ -43,6 +43,18 @@ public class EditoraController {
 		}
 	}
 	
+	@GetMapping("/editoras-livros")
+	public ResponseEntity<List<EditoraDTO>> getAllEditorasLivrosDTO(){
+	    List<EditoraDTO> listaEditoraDTO = editoraService.getAllEditorasLivrosDTO();
+	    System.out.println(listaEditoraDTO);
+	    System.out.println("TESTANDO AQUI");
+	    if(listaEditoraDTO != null && !listaEditoraDTO.isEmpty()) {
+	        return new ResponseEntity<>(listaEditoraDTO, HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    }
+	}
+	
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE,
 			 MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<Editora> saveEditora(@RequestPart("editora") String editora,

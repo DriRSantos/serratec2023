@@ -80,7 +80,6 @@ export default function App() {  // igual ao React exporta função
               backgroundColor: '#55C1FF',
             },
             headerTintColor: '#FFF',
-
           }} />
 
           <Stack.Screen name="Livros" component={Books} options={{
@@ -133,7 +132,7 @@ const Logout = () => {
 
 function DrawerNavigation() {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator screenOptions={{ title: '' }}>
       <Drawer.Screen name="Livraria" component={TabsNavigation} options={{
         headerStyle: {
           backgroundColor: '#55C1FF',
@@ -147,7 +146,6 @@ function DrawerNavigation() {
         headerTintColor: '#FFF',
       }} />
       <Drawer.Screen name="Favoritos" component={Favorites} options={{
-        headerShown: false,
         headerStyle: {
           backgroundColor: '#55C1FF',
         },

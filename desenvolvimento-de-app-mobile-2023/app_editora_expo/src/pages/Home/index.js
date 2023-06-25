@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
   StyleSheet,
@@ -7,7 +6,8 @@ import {
   SafeAreaView,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import { AxiosInstance } from '../../api/AxiosInstance';
 import { DataContext } from '../../context/DataContext';
@@ -22,7 +22,7 @@ const PublisherItem = ({ img, onPress, publisher }) => (
 const BookItem = ({ img, text, text2, onPress }) => (
   <TouchableOpacity onPress={() => onPress({ img, text, text2 })}>
     <View>
-      <Image style={styles.imgLivros} source={{ uri: `data:image/png;base64, ${img}` }} />
+      <Image style={styles.imgBooks} source={{ uri: `data:image/png;base64, ${img}` }} />
       <Text style={styles.text1}>{text}</Text>
       <Text style={styles.text2}>{text2}</Text>
     </View>
@@ -42,19 +42,19 @@ export function Home({ navigation }) {
         const publisherResponse = await AxiosInstance.get('/editoras', {
           headers: { Authorization: `Bearer ${userData?.token}` },
         });
-        // console.log('getTodasEditoras:' + JSON.stringify(publisherResponse.data));
+        // console.log('getAllPublishers:' + JSON.stringify(publisherResponse.data));
         setPublisherData(publisherResponse.data);
 
         const booksResponse = await AxiosInstance.get('/livros', {
           headers: { Authorization: `Bearer ${userData?.token}` },
         });
-        // console.log('getTodosLivros:' + JSON.stringify(booksResponse.data));
+        // console.log('getAllBooks:' + JSON.stringify(booksResponse.data));
         setBookData(booksResponse.data);
 
         const authorResponse = await AxiosInstance.get('/autores', {
           headers: { Authorization: `Bearer ${userData?.token}` },
         });
-        // console.log('getTodosAutores:' + JSON.stringify(authorResponse.data));
+        // console.log('getAllAuthors:' + JSON.stringify(authorResponse.data));
         setAuthorData(authorResponse.data);
       }
       catch (error) {
@@ -83,7 +83,7 @@ export function Home({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
-      <View styles={styles.publisherContainer}>
+      <View style={styles.publisherContainer}>
         <Text style={styles.titleSection}>Editoras</Text>
         <FlatList
           data={publisherData}
@@ -99,7 +99,7 @@ export function Home({ navigation }) {
           showsHorizontalScrollIndicator={false}
         />
       </View>
-      <View styles={styles.booksContainer}>
+      <View style={styles.booksContainer}>
         <Text style={styles.titleSection}>Recentes</Text>
         <FlatList
           data={combinedData}
@@ -118,12 +118,14 @@ export function Home({ navigation }) {
       </View>
       <View style={styles.dataContainer}>
         <Text style={styles.titleSection}>Destaque</Text>
-        <FlatList
-          data={publisherData.slice(0, 1)}
-          renderItem={({ item }) => <PublisherItem img={item.img} text={item.text} />}
-          keyExtractor={(index) => index.toString()}
-          horizontal={true}
-        />
+        {publisherData.length > 0 &&
+          <PublisherItem
+            nomeEditora={publisherData[0].nomeEditora}
+            img={publisherData[0].img}
+            id={publisherData[0].codigoEditora}
+            destaque={true}
+          />
+        }
       </View>
     </SafeAreaView>
   );
@@ -136,16 +138,12 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: '#102E4A',
   },
-  publisherContainer: {
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 5,
-  },
-  booksContainer: {
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 3,
-  },
+  // publisherContainer: {
+
+  // },
+  // booksContainer: {
+
+  // },
   dataContainer: {
     marginTop: 10,
     marginBottom: 10,
@@ -155,13 +153,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#55C1FF',
     marginTop: 5,
+    marginBottom: 5,
   },
   img: {
     width: 200,
     height: 200,
     borderRadius: 20,
+    marginRight: 15,
   },
-  imgLivros: {
+  imgBooks: {
     width: 160,
     height: 200,
     borderRadius: 6,
@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
+    width: 180,
   },
   text2: {
     fontSize: 14,

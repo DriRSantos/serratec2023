@@ -137,9 +137,11 @@ public class EditoraService {
 			editoraDTO.setListaLivrosDTO(listaLivrosDTO);
 			
 			listaEditoraDTO.add(editoraDTO);
+			System.out.println(listaEditoraDTO);
 		}
 		
 		return listaEditoraDTO;
+		
 	}
 	
 	private Editora convertEditoraFromStringJson(String editoraJson) {

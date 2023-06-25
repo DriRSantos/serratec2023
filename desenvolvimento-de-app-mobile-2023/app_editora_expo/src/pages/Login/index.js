@@ -8,12 +8,15 @@ import {
 } from 'react-native';
 import { AxiosInstance } from '../../api/AxiosInstance';
 import { DataContext } from '../../context/DataContext';
+import { Ionicons } from '@expo/vector-icons';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function Login({ navigation }) {  // igual ao React exporta função
   // const Login = () => { // também pode usar arrow function mas LEMBRE de export default Login lá embaixo
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const { storeUserData } = useContext(DataContext);
+  const [hidePass, setHidePass] = useState(true);
 
   const handleLogin = async () => {
     alert('Seja bem vindo à livraDri !!');
@@ -27,11 +30,14 @@ export function Login({ navigation }) {  // igual ao React exporta função
 
       if (response.status === 200) {
         // accessToken , atenção à maneira de guardar o token, pois a chave pode estar escrita como access-token
-        // aí não funciona o jwtToken.accessToken
         var jwtToken = response.data;
         storeUserData(jwtToken["accessToken"]);
-
         navigation.navigate('Home'); // pega do name, que é como o id
+
+        // const accessToken = jwtToken["accessToken"]; // TESTE
+        // AsyncStorage.setItem("accessToken", accessToken);  // TESTE VERIFICAR
+        // console.log(accessToken)
+
       }
       else {
         console.log('Erro ao realizar login!');
@@ -53,13 +59,23 @@ export function Login({ navigation }) {  // igual ao React exporta função
         placeholderTextColor="white"
         onChangeText={setEmail}
       />
-      <TextInput
-        style={styles.input}
-        value={senha}
-        placeholder="Senha"
-        placeholderTextColor="white"
-        onChangeText={setSenha}
-      />
+      <View style={styles.inputArea}>
+        <TextInput
+          style={styles.inputPassword}
+          value={senha}
+          placeholder="Senha"
+          placeholderTextColor="white"
+          onChangeText={setSenha}
+          secureTextEntry={hidePass}
+        />
+        <TouchableOpacity style={styles.icon} onPress={() => setHidePass(!hidePass)}>
+          {hidePass ?
+            <Ionicons name="eye" color="white" />
+            :
+            <Ionicons name="eye-off" color="white" />
+          }
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
         <Text style={styles.txtButton}>Login</Text>
       </TouchableOpacity>
@@ -96,6 +112,33 @@ const styles = StyleSheet.create({ // estilização css no ReactiveNative usa o 
     borderWidth: 1,
     borderColor: '#55C1FF',
     padding: 10,
+    borderRadius: 10,
+    color: '#55C1FF',
+  },
+  inputArea: {
+    flexDirection: 'row',
+  },
+
+  inputPassword: {
+    width: 280,
+    height: 40,
+    margin: 5,
+    borderWidth: 1,
+    borderColor: '#55C1FF',
+    padding: 10,
+    borderRadius: 10,
+    color: '#55C1FF',
+  },
+
+  icon: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#102E4A',
+    marginTop: 5,
+    borderWidth: 1,
+    borderColor: '#55C1FF',
     borderRadius: 10,
   },
 
