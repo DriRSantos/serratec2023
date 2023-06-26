@@ -8,14 +8,15 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 import { AxiosInstance } from '../../api/AxiosInstance';
 import { DataContext } from '../../context/DataContext';
 import { useContext, useState, useEffect } from 'react';
 
-const PublisherItem = ({ img, onPress, publisher }) => (
+const PublisherItem = ({ img, onPress, publisher, featured }) => (
   <TouchableOpacity onPress={() => onPress(publisher)}>
-    <Image style={styles.img} source={{ uri: `data:image/png;base64, ${img}` }} />
+    <Image style={featured ? styles.largeImg : styles.img} source={{ uri: `data:image/png;base64, ${img}` }} />
   </TouchableOpacity>
 );
 
@@ -30,40 +31,8 @@ const BookItem = ({ img, text, text2, onPress }) => (
 );
 
 export function Home({ navigation }) {
-  const { userData } = useContext(DataContext);
-  const [publisherData, setPublisherData] = useState([]);
-  const [bookData, setBookData] = useState([]);
-  const [authorData, setAuthorData] = useState([]);
+  const { publisherData, bookData, authorData } = useContext(DataContext);
   const [combinedData, setCombinedData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const publisherResponse = await AxiosInstance.get('/editoras', {
-          headers: { Authorization: `Bearer ${userData?.token}` },
-        });
-        // console.log('getAllPublishers:' + JSON.stringify(publisherResponse.data));
-        setPublisherData(publisherResponse.data);
-
-        const booksResponse = await AxiosInstance.get('/livros', {
-          headers: { Authorization: `Bearer ${userData?.token}` },
-        });
-        // console.log('getAllBooks:' + JSON.stringify(booksResponse.data));
-        setBookData(booksResponse.data);
-
-        const authorResponse = await AxiosInstance.get('/autores', {
-          headers: { Authorization: `Bearer ${userData?.token}` },
-        });
-        // console.log('getAllAuthors:' + JSON.stringify(authorResponse.data));
-        setAuthorData(authorResponse.data);
-      }
-      catch (error) {
-        console.log('Ocorreu um erro ao recuperar os dados: ' + error);
-      }
-    };
-
-    fetchData();
-  }, [userData?.token]);
 
   useEffect(() => {
     if (bookData.length > 0 && authorData.length > 0) {
@@ -75,7 +44,6 @@ export function Home({ navigation }) {
     }
   }, [bookData, authorData]);
 
-
   // console.log(publisherData)
   // console.log(bookData)
   // console.log(authorData)
@@ -83,50 +51,52 @@ export function Home({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
-      <View style={styles.publisherContainer}>
-        <Text style={styles.titleSection}>Editoras</Text>
-        <FlatList
-          data={publisherData}
-          renderItem={({ item }) => (
-            <PublisherItem
-              img={item.img}
-              onPress={(publisher) => navigation.navigate('HomePublishers', { publisher, bookData, combinedData })}
-              publisher={item}
-            />
-          )}
-          keyExtractor={(item) => item.codigoEditora.toString()}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-      <View style={styles.booksContainer}>
-        <Text style={styles.titleSection}>Recentes</Text>
-        <FlatList
-          data={combinedData}
-          renderItem={({ item }) => (
-            <BookItem
-              img={item.img}
-              text={item.nomeLivro}
-              text2={item.nomeAutor}
-              onPress={(data) => navigation.navigate('Livros')}
-            />
-          )}
-          keyExtractor={(item) => item.codigoLivro.toString()}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-      <View style={styles.dataContainer}>
-        <Text style={styles.titleSection}>Destaque</Text>
-        {publisherData.length > 0 &&
-          <PublisherItem
-            nomeEditora={publisherData[0].nomeEditora}
-            img={publisherData[0].img}
-            id={publisherData[0].codigoEditora}
-            destaque={true}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.publisherContainer}>
+          <Text style={styles.titleSection}>Editoras</Text>
+          <FlatList
+            data={publisherData}
+            renderItem={({ item }) => (
+              <PublisherItem
+                img={item.img}
+                onPress={(publisher) => navigation.navigate('HomePublishers', { publisher, bookData, combinedData })}
+                publisher={item}
+              />
+            )}
+            keyExtractor={(item) => item.codigoEditora.toString()}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
           />
-        }
-      </View>
+        </View>
+        <View style={styles.booksContainer}>
+          <Text style={styles.titleSection}>Recentes</Text>
+          <FlatList
+            data={combinedData}
+            renderItem={({ item }) => (
+              <BookItem
+                img={item.img}
+                text={item.nomeLivro}
+                text2={item.nomeAutor}
+                onPress={(data) => navigation.navigate('Livros')}
+              />
+            )}
+            keyExtractor={(item) => item.codigoLivro.toString()}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+        <View style={styles.dataContainer}>
+          <Text style={styles.titleSection}>Destaque</Text>
+          {publisherData.length > 0 &&
+            <PublisherItem
+              nomeEditora={publisherData[0].nomeEditora}
+              img={publisherData[0].img}
+              id={publisherData[0].codigoEditora}
+              featured={true}
+            />
+          }
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -134,7 +104,7 @@ export function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    // marginTop: StatusBar.currentHeight || 0,
     padding: 5,
     backgroundColor: '#102E4A',
   },
@@ -167,7 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   largeImg: {
-    width: 300,
+    width: '100%',
     height: 200,
     borderRadius: 20,
   },

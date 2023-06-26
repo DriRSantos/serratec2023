@@ -104,7 +104,6 @@ const styles = StyleSheet.create({ // estilização css no ReactiveNative usa o 
     marginBottom: 10,
     color: '#55C1FF',
   },
-
   input: {
     width: 320,
     height: 40,
@@ -122,11 +121,14 @@ const styles = StyleSheet.create({ // estilização css no ReactiveNative usa o 
   inputPassword: {
     width: 280,
     height: 40,
-    margin: 5,
+    marginTop: 5,
     borderWidth: 1,
     borderColor: '#55C1FF',
     padding: 10,
     borderRadius: 10,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    borderRightWidth: 0,
     color: '#55C1FF',
   },
 
@@ -135,11 +137,13 @@ const styles = StyleSheet.create({ // estilização css no ReactiveNative usa o 
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#102E4A',
     marginTop: 5,
     borderWidth: 1,
     borderColor: '#55C1FF',
     borderRadius: 10,
+    borderLeftWidth: 0,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
   },
 
   button: {

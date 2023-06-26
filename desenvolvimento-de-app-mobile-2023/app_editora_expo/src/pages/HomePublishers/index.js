@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
   StyleSheet,
@@ -7,7 +6,8 @@ import {
   SafeAreaView,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 export function HomePublishers({ navigation, route }) {
