@@ -15,7 +15,7 @@ export const AxiosInstance = axios.create({
 // });
 
 // TEM QUE ALTERAR O NOME CONFORME O NOME DA CONST AI EM CIMA, se fosse API, ficaria api.interceptors... ou gitAPI, gitAPI.interceptors...
-// AxiosInstance.interceptors.request.use((config) => {
+// api.interceptors.request.use((config) => {
 //   const accessToken = AsyncStorage.getItem("accessToken");
 //   if (accessToken) {
 //     config.headers.Authorization = `Bearer ${accessToken}`;

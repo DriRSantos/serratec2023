@@ -1,7 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
-import { AxiosInstance } from '../api/AxiosInstance';  // make sure the path to AxiosInstance is correct
-
 
 // context
 export const DataContext = createContext({});
@@ -9,9 +7,6 @@ export const DataContext = createContext({});
 // context provider (dá o nome que quiser)
 export const DataProvider = ({ children }) => {
   const [userData, setUserData] = useState('');
-  const [publisherData, setPublisherData] = useState([]);
-  const [bookData, setBookData] = useState([]);
-  const [authorData, setAuthorData] = useState([]);
 
   console.log(jwtDecode)
   const storeUserData = (jwt) => {
@@ -33,45 +28,10 @@ export const DataProvider = ({ children }) => {
     })
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const publisherResponse = await AxiosInstance.get('/editoras', {
-          headers: { Authorization: `Bearer ${userData?.token}` },
-        });
-        setPublisherData(publisherResponse.data);
-
-        const booksResponse = await AxiosInstance.get('/livros', {
-          headers: { Authorization: `Bearer ${userData?.token}` },
-        });
-        setBookData(booksResponse.data);
-
-        const authorResponse = await AxiosInstance.get('/autores', {
-          headers: { Authorization: `Bearer ${userData?.token}` },
-        });
-        setAuthorData(authorResponse.data);
-      }
-      catch (error) {
-        console.log('Error fetching data: ' + error);
-      }
-    };
-
-    if (userData?.token) {
-      fetchData();
-    }
-  }, [userData?.token]);
-
-
   return (
     <DataContext.Provider value={{
       userData,
       storeUserData,
-      publisherData,
-      setPublisherData,
-      bookData,
-      setBookData,
-      authorData,
-      setAuthorData,
     }}>
       {children}
     </DataContext.Provider>

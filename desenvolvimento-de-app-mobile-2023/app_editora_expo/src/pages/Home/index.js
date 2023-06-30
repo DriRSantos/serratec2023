@@ -13,12 +13,13 @@ import {
 import { AxiosInstance } from '../../api/AxiosInstance';
 import { DataContext } from '../../context/DataContext';
 import { useContext, useState, useEffect } from 'react';
+import { save, deletePublisher, getValueFor, saveArray } from '../../services/DataService';
 
-const PublisherItem = ({ img, onPress, publisher, featured }) => (
-  <TouchableOpacity onPress={() => onPress(publisher)}>
-    <Image style={featured ? styles.largeImg : styles.img} source={{ uri: `data:image/png;base64, ${img}` }} />
-  </TouchableOpacity>
-);
+// const PublisherItem = ({ img, onPress, publisher, featured }) => ( // passou para baixo devido ao SecureStore
+//   <TouchableOpacity onPress={() => onPress(publisher)}>
+//     <Image style={featured ? styles.largeImg : styles.img} source={{ uri: `data:image/png;base64, ${img}` }} />
+//   </TouchableOpacity>
+// );
 
 const BookItem = ({ img, text, text2, onPress }) => (
   <TouchableOpacity onPress={() => onPress({ img, text, text2 })}>
@@ -31,8 +32,55 @@ const BookItem = ({ img, text, text2, onPress }) => (
 );
 
 export function Home({ navigation }) {
-  const { publisherData, bookData, authorData } = useContext(DataContext);
+  const { userData } = useContext(DataContext);
+  const [publisherData, setPublisherData] = useState([]);
+  const [bookData, setBookData] = useState([]);
+  const [authorData, setAuthorData] = useState([]);
   const [combinedData, setCombinedData] = useState([]);
+  const [savedData, setSavedData] = useState();
+
+  const PublisherItem = ({ img, onPress, publisher, featured }) => (
+    <TouchableOpacity onPress={() => {
+      // onPress(publisher);
+      savePublisher('publisher', publisher.codigoEditora);
+    }}>
+      <Image style={featured ? styles.largeImg : styles.img} source={{ uri: `data:image/png;base64, ${img}` }} />
+    </TouchableOpacity>
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [publisherResponse, booksResponse, authorResponse] = await Promise.all([
+          AxiosInstance.get('/editoras', {
+            headers: { Authorization: `Bearer ${userData?.token}` },
+          }),
+          AxiosInstance.get('/livros', {
+            headers: { Authorization: `Bearer ${userData?.token}` },
+          }),
+          AxiosInstance.get('/autores', {
+            headers: { Authorization: `Bearer ${userData?.token}` },
+          }),
+        ]);
+        setPublisherData(publisherResponse.data);
+        setBookData(booksResponse.data);
+        setAuthorData(authorResponse.data);
+      }
+      catch (error) {
+        console.log('Ocorreu um erro ao recuperar os dados Editoras, Livros ou Autor: ' + error);
+      }
+    };
+
+    fetchData();
+  }, [userData?.token]);
+
+
+
+  const savePublisher = async (key, value) => {
+    console.log('save function:', save);
+    await saveArray(key, value);
+    setSavedData(await getValueFor('publisher'));
+  }
 
   useEffect(() => {
     if (bookData.length > 0 && authorData.length > 0) {
@@ -54,6 +102,10 @@ export function Home({ navigation }) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.publisherContainer}>
           <Text style={styles.titleSection}>Editoras</Text>
+          <TouchableOpacity onPress={() => deletePublisher('publisher')}>
+            <Text>Deletar editora</Text>
+          </TouchableOpacity>
+          <Text style={styles.titleSection}> TESTE {'Publishesr:' + JSON.stringify(savedData)} </Text>
           <FlatList
             data={publisherData}
             renderItem={({ item }) => (
